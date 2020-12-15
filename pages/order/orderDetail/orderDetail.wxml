@@ -1,0 +1,115 @@
+<!--pages/order/orderDetail/orderDetail.wxml-->
+<view class="container">
+  <!-- 订单状态 -->
+  <view class="order_status">
+    <view class="past">
+      <image src="../../../image/order/order_status_icon2.png"></image>
+      客服确认
+    </view>
+    <view class="current">
+      <image src="../../../image/order/order_status_icon3.png"></image>
+      待支付
+    </view>
+    <view class="after">
+      <image src="../../../image/order/order_status_icon1.png"></image>
+      进行中
+    </view>
+    <view class="after">
+      <image src="../../../image/order/order_status_icon1.png"></image>
+      已支付
+    </view>
+  </view>
+
+  <!-- 超时未支付 -->
+  <view class="order_overtime">
+    <image src="../../../image/order/order_overtime_icon.png"></image>
+    <text>超时未支付</text>
+  </view>
+
+  <!-- 车辆信息 -->
+  <view class="tab_content">
+    <view class="order_list" bindtap="goToDetail">
+      <view class="order_basic">
+        <text class="order_id">订单编号:202010310019</text>
+      </view>
+      <view class="list_content order_car">
+        <image class="car_img" src="../../../image/index/sort_Mercedes.png"></image>
+        <view class="car_box">
+          <view>
+            <view class="name">
+              奥迪<text>A4L 2.0T</text>
+              <image src="../../../image/common/label_icon3.png"></image>
+            </view>
+            <view class="size">浙A****01</view>
+            <view class="size">日均限200km</view>
+          </view>
+        </view>
+      </view>
+      <view class="list_content order_time">
+        <view class="time_box">10月31日</view>
+        <view class="time_through">
+          <text>60天</text>
+          <image src="../../../image/common/time_through.png"></image>
+        </view>
+        <view class="time_box">12月31日</view>
+      </view>
+      <view class="list_content order_address">
+        <view class="left">自取/上门取车</view>
+        <view class="right">
+          杭州市余杭区莫干山路1888号附近
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 租金 -->
+  <view class="price_detail">
+    <view>
+      <view>车辆租金</view>
+      <view><text>318元 X 2</text>636元</view>
+    </view>
+    <view>
+      <view>上门取送费</view>
+      <view>636元</view>
+    </view>
+    <view>
+      <view>租车费用总计</view>
+      <view>636元</view>
+    </view>
+  </view>
+  <!-- 押金 -->
+  <view class="price_detail">
+    <view>
+      <view>押金（可退）</view>
+      <view class="grey">取车时支付押金</view>
+    </view>
+    <view>
+      <view>车辆押金</view>
+      <view>636元</view>
+    </view>
+    <view>
+      <view>违章押金</view>
+      <view>636元</view>
+    </view>
+  </view>
+
+  <!-- 客服 -->
+  <button open-type="contact" class="service">有疑问？联系客服</button>
+
+  <!-- 操作 -->
+  <view class="order_handle">
+    <!-- 客服确认 时有↓ -->
+    <!-- <button open-type="contact" class="service_btn">联系客服</button> -->
+
+    <!-- 待支付 时有↓ -->
+    <view class="pay_box">
+      <view class="except">
+        <view class="price">
+          租车费用<text>696元</text>
+        </view>
+        <view class="count_down">倒计时57分30秒</view>
+      </view>
+      <view class="btn blue_gradient_abeam">立即支付</view>
+    </view>
+  </view>
+</view>

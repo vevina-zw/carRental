@@ -1,0 +1,57 @@
+<!--pages/my/authentication/driver/driver.wxml-->
+<view class="container">
+  <view class="picture_upload">
+    <view class="tips">请上传驾驶证照片，并确保信息无误</view>
+    <view class="picture_box">
+      <view bindtap="chooseImage" data-tag="photoPath3">
+        <image wx:if="{{photoPath3.length<=0}}" src="../../../../image/my/picture_upload_bg3.png"></image>
+        <view class="imgBox" wx:else>
+          <image src="{{photoPath3[0]}}" catchtap="previewImage" data-item="{{photoPath3[0]}}" data-tag="photoPath3" mode="aspectFit" ></image>
+          <text class="fa fa-trash-o" catchtap="deleteImg" data-tag="photoPath3" ></text>
+        </view>
+      </view>
+      <view bindtap="chooseImage" data-tag="photoPath4">
+        <image wx:if="{{photoPath4.length<=0}}" src="../../../../image/my/picture_upload_bg4.png"></image>
+        <view class="imgBox" wx:else>
+          <image src="{{photoPath4[0]}}" catchtap="previewImage" data-item="{{photoPath4[0]}}" data-tag="photoPath4" mode="aspectFit" ></image>
+          <text class="fa fa-trash-o" catchtap="deleteImg" data-tag="photoPath4" ></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="input_box">
+    <view>
+      <label>证件号</label>
+      <input />
+    </view>
+    <view>
+      <label>初次领证时间</label>
+      <input />
+    </view>
+    <view>
+      <label>准驾类型</label>
+      <input />
+    </view>
+    <view style="flex-direction: column;align-items: flex-start;justify-content: space-around; border-bottom: none;">
+      <label>有效期</label>
+      <view class="datePicker_box">
+        <picker mode="date" value="{{licenseStartTime}}" bindchange="bindStartDateChange">
+          <view class="picker">
+            <text class="label" wx:if="{{!licenseStartTime}}">起始时间</text>
+            {{licenseStartTime}}
+            <image src="../../../../image/car/date_picker_icon.png"></image>
+          </view>
+        </picker>
+        <text class="cross_line"></text>
+        <picker mode="date" value="{{licenseEndTime}}" start="{{rentStartTime}}" bindchange="bindEndDateChange">
+          <view class="picker">
+            <text class="label" wx:if="{{!licenseEndTime}}">结束时间</text>
+            {{licenseEndTime}}
+            <image src="../../../../image/car/date_picker_icon.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="btn">确认提交</view>
+</view>

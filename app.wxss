@@ -1,0 +1,188 @@
+/**app.wxss**/
+@import "utils/fontawesome.wxss";
+page{
+  color: #333;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 按钮 */
+.btn{
+  width: 300rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
+  background:#1F4BA8;
+}
+.blue_gradient{
+  background: -moz-linear-gradient(top, #1F4BA8 0%, #638ADD 100%) ;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1F4BA8), color-stop(100%,#638ADD))  ;
+  background: -webkit-linear-gradient(top, #1F4BA8 0%,#638ADD 100%) ;
+  background: -o-linear-gradient(top, #1F4BA8 0%,#638ADD 100%) ;
+  background: -ms-linear-gradient(top, #1F4BA8 0%,#638ADD 100%) ;
+}
+.blue_gradient_abeam{
+	background:-webkit-linear-gradient(left,#20448B,#132762);
+	background:-o-linear-gradient(right,#20448B,#132762);
+	background:-moz-linear-gradient(right,#20448B,#132762);
+	background:linear-gradient(to right,#20448B,#132762);
+}
+
+/* 搜索 */
+.search_box{
+  width: 690rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.search{
+  width: 690rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0 18rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  margin: 20rpx 0;
+  background-color: #F2F2F2;
+}
+.search image{
+  width: 31rpx;
+  height: 31rpx;
+  margin-right:20rpx;
+}
+.search input{
+  flex: 1;
+  color: #333;
+}
+/* .search_box .btn{
+  width: 120rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+} */
+
+/* 车列表 */
+.car_list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.car_list .car_img{
+  width: 287rpx;
+  height: 167rpx;
+}
+.car_list .car_box{
+  width: 304rpx;
+  overflow: hidden;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40rpx 0;
+}
+.car_list .car_box .name{
+  color: #333;
+  font-size: 24rpx;
+}
+.car_list .car_box .name text{
+  font-size: 32rpx;
+  margin: 0 20rpx;
+}
+.car_list .car_box .name image{
+  width: 26rpx;
+  height: 28rpx;
+}
+.car_list .car_box .size{
+  font-size: 24rpx;
+  color: #999;
+}
+.car_list .car_box .price{
+  font-size: 24rpx;
+  display: flex;
+  align-items: flex-end;
+}
+.car_list .car_box .price .discount{
+  color: #E61E1E;
+  margin-right: 26rpx;
+}
+.car_list .car_box .price .discount text{
+  font-size: 30rpx;
+}
+.car_list .car_box .price .cost{
+  color:#A9A9A9;
+  text-decoration: line-through;
+}
+
+/* 标题栏 */
+.title_bar{
+  width: 690rpx;
+  margin: 0 auto;
+  color: #333;
+  font-size: 30rpx;
+  height: 87rpx;
+  display: flex;
+  align-items: center;
+}
+.title_bar text{
+  width: 7rpx;
+  height: 25rpx;
+  border-radius: 3.5rpx;
+  margin-right: 30rpx;
+  background-color: #13227A;
+}
+
+/* 时间段选择 */
+.datePicker_box{
+  display: flex;
+  align-items: center;
+  padding-left: 35rpx;
+}
+.datePicker_box .cross_line{
+  width: 15rpx;
+  height: 2rpx;
+  background-color: #1F4BA8;
+  margin: 0 18rpx;
+}
+.datePicker_box .picker{
+  width: 280rpx;
+  height: 50rpx;
+  padding:0 24rpx;
+  box-sizing: border-box;
+  border-radius: 25rpx;
+  border: 1rpx solid #CCC;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.datePicker_box .picker .label{
+  color: #999;
+}
+.datePicker_box .picker image{
+  width: 9rpx;
+  height: 8rpx;
+}
+
+
+
+
+
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */

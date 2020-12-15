@@ -1,0 +1,97 @@
+<!--pages/car/carDetail/carDetail.wxml-->
+<view class="container">
+  <!-- banner -->
+  <view class="car_banner" wx:if="{{bannerData.length>0}}">
+    <swiper autoplay="{{autoplay}}" 
+        circular="{{circular}}" 
+        vertical="{{vertical}}" 
+        interval="{{interval}}" 
+        duration="{{duration}}" 
+        bindchange="swiperChange"
+      >
+      <block wx:for='{{bannerData}}' wx:key='index'>
+        <swiper-item>
+          <image src='{{item}}' mode='aspectFill' class='swiper-item-images'/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="count_box">{{current+1}} / {{bannerData.length}}</view>
+  </view>
+    
+
+  <!-- 车辆信息 -->
+  <view class="car_basic">
+    <view class="price">
+      <view class="cost">￥{{carInfo.normalPrice}}/天</view>
+      <view class="discount">￥<text>{{carInfo.discountPrice}}</text>/天</view>
+    </view>
+    <view class="model">{{carInfo.brand}} {{carInfo.brandSub}} {{carInfo.displacement}}T 
+      <image wx:if="{{carInfo.ownerFlag == 'YES'}}" src="../../../image/common/label_icon3.png"></image>
+    </view>
+    <view class="size">
+      <view>
+        <text>{{carInfo.licenseNo}}</text>
+        <text>日均限{{carInfo.limitMile}}km</text>
+      </view>
+      <view>
+        <text>{{carInfo.age}}年车龄</text>
+        <text>{{carInfo.useDay}}日起租</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 可租用时间 -->
+  <view class="car_date">
+    <view class="title_bar">
+      <text></text>
+      可租用时间
+    </view>
+    <view class="datePicker_box">
+      <picker mode="date" value="{{rentStartTime}}" bindchange="bindStartDateChange">
+        <view class="picker">
+          <text class="label" wx:if="{{!rentStartTime}}">起始时间</text>
+          {{rentStartTime}}
+          <image src="../../../image/car/date_picker_icon.png"></image>
+        </view>
+      </picker>
+      <text class="cross_line"></text>
+      <picker mode="date" value="{{rentEndTime}}" start="{{rentEndTime_mini}}" bindchange="bindEndDateChange">
+        <view class="picker">
+          <text class="label" wx:if="{{!rentEndTime}}">结束时间</text>
+          {{rentEndTime}}
+          <image src="../../../image/car/date_picker_icon.png"></image>
+        </view>
+      </picker>
+    </view>
+
+    
+  </view>
+
+  <!-- 车辆配置 -->
+  <view class="car_config">
+    <view class="title_bar">
+      <text></text>
+      车辆配置
+    </view>
+    <view class="config_info">
+      <view wx:for="{{carConfigInfoData}}" wx:key="index">
+        <text class="title">{{item.title}}</text>
+        <text class="value">{{item.value}}</text>
+      </view>
+    </view>
+    <view class="config_sign">
+      <view wx:for="{{carConfigSignData}}" wx:key="index">
+        <image mode="aspectFit" src="{{item.value}}"></image>
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+  
+
+  <view class="book_handle">
+    <view class="btn" bindtap="goToBookCar">下一步，填写订单</view>
+  </view>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
+</view>

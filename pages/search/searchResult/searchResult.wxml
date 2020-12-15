@@ -1,0 +1,68 @@
+<!--pages/search/searchResult/searchResult.wxml-->
+<view class="container">
+  <view class="fixed_layer">
+    <!-- 搜索 -->
+    <view class="search_box">
+      <view class="search" bindtap="goToSearch">
+        <input placeholder="搜索品牌/关键字" bindinput='getSearchValue' />
+        <image src="../../../image/common/search_icon2.png"></image>
+      </view>
+      <!-- <view class="btn blue_gradient" bindtap="goSearch">搜索</view> -->
+    </view>
+
+    <!-- 搜索条件 -->
+    <view class="search_condition">
+      <view wx:for="{{conditionData}}" wx:key="index" data-idx="{{index}}" bindtap="clickCondition">
+        {{item.name}}
+        <image src="../../../image/search/search_icon1.png"></image>
+      </view>
+    </view>
+    <view class="search_condition_panel" style="height:{{sv_height}}px;" wx:if="{{showConditionPanel}}">
+      <view class="content" wx:if="{{currentTab==0}}">
+        <view>综合排序</view>
+        <view bindtap="setQueryItem" data-stype='multiple' data-order='0'>价格最低</view>
+        <view bindtap="setQueryItem" data-stype='multiple' data-order='1'>价格最高</view>
+      </view>
+      <view class="content" wx:if="{{currentTab==1}}">
+        <view>品牌</view>
+        <view bindtap="setQueryItem" data-stype='brand' data-brand='品牌1'>品牌1</view>
+        <view bindtap="setQueryItem" data-stype='brand' data-brand='品牌2'>品牌2</view>
+      </view>
+      <view class="rent_content" wx:if="{{currentTab==2}}">
+        <view>租金</view>
+        <view class="text_box">
+          <text bindtap="setQueryItem" data-stype='price' data-lprice='0' data-hprice='150'>0-150</text>
+          <text bindtap="setQueryItem" data-stype='price' data-lprice='150' data-hprice='250'>150-250</text>
+          <text bindtap="setQueryItem" data-stype='price' data-lprice='250' data-hprice='350'>250-350</text>
+          <text bindtap="setQueryItem" data-stype='price' data-lprice='350'>350以上</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <scroll-view scroll-y="true" class="scroll_layer" style="height:{{sv_height}}px;" lower-threshold="{{sv_height}}px" 
+    bindscrolltoupper="refreshCarList" bindscrolltolower="loadMoreCarList">
+    <view class="car_list" wx:for="{{carLists}}" wx:key="index"
+      bindtap="goToCarDetail" data-code="{{item.carCode}}">
+      <image class="car_img" src="{{item.detailPic}}"></image>
+      <view class="car_box">
+        <view>
+          <view class="name">
+            {{item.brand}}<text> {{item.brandSub}} {{item.displacement}}T </text>
+            <image wx:if="{{item.ownerFlag == 'YES'}}" src="../../../image/common/label_icon1.png"></image>
+          </view>
+          <view class="size">{{item.licenseNo}} | 日均限{{item.limitMile}}km</view>
+        </view>
+        <view class="price">
+          <view class="discount"><text>￥{{item.discountPrice}}</text>/天</view>
+          <view class="cost">￥{{item.normalPrice}}/天</view>
+        </view>
+      </view>
+    </view>
+    <view class="load_warn" wx:if="{{warn}}">------{{warn}}------</view>
+  </scroll-view>
+
+    <!-- 自定义弹窗组件 -->
+    <toast id='toast'></toast>
+</view>

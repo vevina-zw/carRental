@@ -1,0 +1,58 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/order/order",
+    "pages/order/orderDetail/orderDetail",
+    "pages/my/my",
+    "pages/my/contactUs/contactUs",
+    "pages/my/authentication/identity/identity",
+    "pages/my/authentication/driver/driver",
+    "pages/my/authentication/result/result",
+    "pages/search/search",
+    "pages/search/searchResult/searchResult",
+    "pages/car/carDetail/carDetail",
+    "pages/car/bookCar/bookCar",
+    "pages/login/login"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "杭兴汽车租赁",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "image/tabbar/tab_index_selected.png",
+        "iconPath": "image/tabbar/tab_index.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "image/tabbar/tab_car_selected.png",
+        "iconPath": "image/tabbar/tab_car.png",
+        "pagePath": "pages/search/searchResult/searchResult",
+        "text": "车辆"
+      },
+      {
+        "selectedIconPath": "image/tabbar/tab_order_selected.png",
+        "iconPath": "image/tabbar/tab_order.png",
+        "pagePath": "pages/order/order",
+        "text": "订单"
+      },
+      {
+        "selectedIconPath": "image/tabbar/tab_my_selected.png",
+        "iconPath": "image/tabbar/tab_my.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "toast": "/components/toast/toast"
+  },
+  "sitemapLocation": "sitemap.json"
+}

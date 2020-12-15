@@ -1,0 +1,153 @@
+/* pages/order/order.wxss */
+page{
+  background-color: #F2F2F2;
+}
+.tab_nav{
+  width: 750rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 32rpx;
+  color: #666;
+  background-color: #fff;
+}
+.tab_nav >view{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.tab_nav .cur{
+  color: #1F4BA8;
+  position: relative;
+}
+.tab_nav .cur::after{
+  content: "";
+  width: 33rpx;
+  height: 7rpx;
+  border-radius: 3.5rpx;
+  background-color: #1F4BA8;
+  display: inline-block;
+  position: absolute;
+  bottom:0;
+  left: 50%;
+  margin-left: -16.5rpx;
+}
+.tab_content{
+  margin-top: 10rpx;
+}
+.tab_content .order_list{
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+.tab_content .order_basic{
+  width: 690rpx;
+  padding: 0 30rpx;
+  height: 65rpx;
+  border-bottom: 1rpx solid #DDD;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22rpx;
+}
+.tab_content .order_basic .order_id{
+  color: #999;
+}
+.tab_content .order_basic .order_status.blue{
+  color: #83A7CF;
+}
+.tab_content .order_basic .order_status.red{
+  color: #F9594D;
+}
+
+.tab_content .list_content{
+  width: 690rpx;
+  /* margin: 0 auto; */
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tab_content .order_car{
+  padding: 50rpx 30rpx;
+}
+.tab_content .car_img{
+  width: 198rpx;
+  height: 116rpx;
+}
+.tab_content .car_box{
+  width: 458rpx;
+  overflow: hidden;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.tab_content .car_box .name{
+  color: #333;
+  font-size: 24rpx;
+}
+.tab_content .car_box .name text{
+  font-size: 32rpx;
+  margin: 0 20rpx;
+}
+.tab_content .car_box .name image{
+  width: 26rpx;
+  height: 28rpx;
+}
+.tab_content .car_box .size{
+  font-size: 24rpx;
+  color: #999;
+}
+
+.tab_content .order_time{
+  height: 100rpx;
+}
+.tab_content .time_box{
+  font-size: 28rpx;
+  color: #666;
+}
+.tab_content .time_through{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tab_content .time_through text{
+  font-size: 24rpx;
+  color: #666;
+}
+.tab_content .time_through image{
+  width: 161rpx;
+  height: 19rpx;
+}
+
+.tab_content .order_address{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+  padding: 38rpx 30rpx;
+}
+.tab_content .order_address .left{
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+.tab_content .order_address .right{
+  color: #999;
+}
+.tab_content .order_pay{
+  padding-bottom: 35rpx;
+}
+.tab_content .order_pay .price{
+  color: #F9594D;
+  font-size: 22rpx;
+}
+.tab_content .order_pay .price text{
+  font-size: 24rpx;
+}
+.tab_content .order_pay .btn{
+  width: 177rpx;
+  height: 47rpx;
+  line-height: 47rpx;
+  font-size: 22rpx;
+}

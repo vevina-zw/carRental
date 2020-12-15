@@ -1,0 +1,111 @@
+<!--pages/car/bookCar/bookCar.wxml-->
+<view class="container">
+  <view class="tab_content">
+    <!-- 车辆信息 -->
+    <view class="order_list">
+      <view class="list_content order_car">
+        <image class="car_img" src="{{carInfo.detailPic}}"></image>
+        <view class="car_box">
+          <view>
+            <view class="name">
+              {{carInfo.brand}}<text>{{carInfo.brandSub}} {{carInfo.displacement}}T </text>
+              <image wx:if="{{carInfo.ownerFlag == 'YES'}}" src="../../../image/common/label_icon3.png"></image>
+            </view>
+            <view class="size">{{carInfo.licenseNo}}</view>
+            <view class="size">日均限{{carInfo.limitMile}}km</view>
+          </view>
+        </view>
+      </view>
+      <!-- 取车方式 -->
+      <view class="order_way">
+        <!-- 上门送取 -->
+        <view class="order_on_home">
+          <view><text>上门送取服务</text>(含代检测车辆)</view>
+          <switch color="#1F4BA8" checked="{{onHomeSwitch}}" bindchange="onHomeSwitchChange"/>
+        </view>
+        <!-- 上门送取：地址 -->
+        <view class="order_on_home_address" wx:if="{{onHomeSwitch}}">
+          <view class="address_box">
+            <view class="input_box">
+              <text>取车</text>
+              <input placeholder="请输入取车地址" bindinput="homeSendAddress"></input>
+            </view>
+            <label class="radio" bindtap="homeSendRadioChange">
+              <radio color="#1F4BA8" checked="{{isHomeSend}}"/>送车上门
+            </label>
+          </view>
+          <view class="address_box">
+            <view class="input_box">
+              <text>还车</text>
+              <input placeholder="请输入还车地址" bindinput="homeTakeAddress"></input>
+            </view>
+            <label class="radio" bindtap="homeTakeRadioChange">
+              <radio color="#1F4BA8" checked="{{isHomeTake}}"/>上门取车
+            </label>
+          </view>
+        </view>
+
+        <!-- 到店 -->
+        <view class="order_on_shop" wx:if="{{!onHomeSwitch}}"><text>地址</text>{{storeAddress}}</view>
+      </view>
+
+      <!-- 日期 -->
+      <view class="list_content order_time">
+        <view class="time_box">
+          <!-- 10月31日 -->
+          {{rentStartTime}}
+        </view>
+        <view class="time_through">
+          <text>{{differenceDay}}天</text>
+          <image src="../../../image/common/time_through.png"></image>
+        </view>
+        <view class="time_box">
+          <!-- 12月31日 -->
+          {{rentEndTime}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 租金 -->
+  <view class="price_detail">
+    <view>
+      <view>车辆租金</view>
+      <view><text>{{carInfo.discountPrice}}元 X {{differenceDay}}</text>{{rentPrice}}元</view>
+    </view>
+    <view wx:if="{{onHomeSwitch}}">
+      <view>上门取送费</view>
+      <view>{{onHomePrice}}元</view>
+    </view>
+    <view>
+      <view>租车费用总计</view>
+      <view>{{totalPrice}}元</view>
+    </view>
+  </view>
+  <!-- 押金 -->
+  <view class="price_detail">
+    <view>
+      <view>押金（可退）</view>
+      <view class="grey">取车时支付押金</view>
+    </view>
+    <view>
+      <view>车辆押金</view>
+      <view>{{carInfo.cashPledge}}元</view>
+    </view>
+    <view>
+      <view>违章押金</view>
+      <view>{{carInfo.illegalCashPledge}}元</view>
+    </view>
+  </view>
+
+  <!-- 客服 -->
+  <button open-type="contact" class="service">有疑问？联系客服</button>
+
+  <!-- 操作 -->
+  <view class="order_handle">
+    <view class="service_btn" bindtap="addOrder">意向下单</view>
+  </view>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
+</view>

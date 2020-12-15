@@ -1,0 +1,144 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.1",
+  "appid": "wx90689c6f97fd5f5f",
+  "projectname": "carRental",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "我的",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "订单",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "搜索",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "搜索结果",
+          "pathName": "pages/search/searchResult/searchResult",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/order/orderDetail/orderDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "车辆详情",
+          "pathName": "pages/car/carDetail/carDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "意向下单",
+          "pathName": "pages/car/bookCar/bookCar",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "联系我们",
+          "pathName": "pages/my/contactUs/contactUs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "身份认证",
+          "pathName": "pages/my/authentication/authentication",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "身份认证-上传身份证",
+          "pathName": "pages/my/authentication/identity/identity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "身份认证-上传驾驶证",
+          "pathName": "pages/my/authentication/driver/driver",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "身份认证-结果",
+          "pathName": "pages/my/authentication/result/result",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录",
+          "pathName": "pages/login/login",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

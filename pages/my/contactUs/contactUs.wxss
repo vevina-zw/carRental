@@ -1,0 +1,31 @@
+/* pages/my/contactUs/contactUs.wxss */
+.page_title{
+  width: 750rpx;
+  line-height: 120rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  text-align: center;
+}
+.about_us,.contact_way{
+  width: 629rpx;
+  margin: 0 auto 20rpx auto;
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+.about_us >view{
+  text-indent:2em
+}
+
+.contact_way{
+  color: #999;
+}
+.contact_way >view{
+  height: 57rpx;
+  display: flex;
+  align-items: center;
+}
+.contact_way >view image{
+  max-width: 32rpx;
+  max-height: 35rpx;
+  margin-right: 14rpx;
+}

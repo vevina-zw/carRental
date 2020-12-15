@@ -1,0 +1,63 @@
+/* pages/my/my.wxss */
+.my-info{
+  width: 750rpx;
+  position: relative;
+}
+.my-info .info_bg{
+  width: 750rpx;
+  height: 388rpx;
+}
+.my-info .info_box{
+  position: absolute;
+  z-index: 10;
+  left: 30rpx;
+  bottom: 60rpx;
+  display: flex;
+}
+.my-info .info_box image{
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+}
+.my-info .info_box .text_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 112rpx;
+  color: #fff;
+  margin-left: 47rpx;
+}
+.my-info .info_box .name{
+  font-size: 36rpx;
+}
+.my-info .info_box .phone{
+  font-size: 32rpx;
+}
+.my-lists{
+  width: 690rpx;
+}
+.my-lists .list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120rpx;
+}
+.my-lists .list .left{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #333;
+}
+.my-lists .list .left image{
+  max-width: 40rpx;
+  max-height: 40rpx;
+  margin: 0 20rpx;
+}
+.my-lists .list >image{
+  width: 17rpx;
+  height: 33rpx;
+}
+.btn{
+  margin: 50rpx 0;
+}

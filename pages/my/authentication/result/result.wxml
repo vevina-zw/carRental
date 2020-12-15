@@ -1,0 +1,26 @@
+<!--pages/my/authentication/result/result.wxml-->
+<view class="container">
+  <view class="authen_status">
+    <image src="../../../../image/my/anthen_icon_success.png"></image>
+    <!-- <image src="../../../../image/my/anthen_icon_failed.png"></image> -->
+    <text>身份认证通过</text>
+  </view>
+  <view class="authen_info">
+    <view>
+      <text>真实姓名</text>
+      <text>姓名</text>
+    </view>
+    <view>
+      <text>身份证号</text>
+      <text>230311789012345678</text>
+    </view>
+    <view>
+      <text>手机号</text>
+      <text>12345678901</text>
+    </view>
+    <view>
+      <text>上传驾驶证</text>
+      <text class="link" bindtap="goToDriver">待上传>></text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+/* pages/my/authentication/result/result.wxss */
+.authen_status{
+  height: 451rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.authen_status image{
+  width: 171rpx;
+  height: 171rpx;
+}
+.authen_status text{
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 83rpx;
+}
+.authen_info >view{
+  width: 690rpx;
+  height: 89rpx;
+  font-size: 30rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.authen_info >view .link{
+  color: #3877FE;
+}

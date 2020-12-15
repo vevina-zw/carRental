@@ -1,0 +1,15 @@
+/* pages/my/authentication/driver/driver.wxss */
+@import "../identity/identity.wxss";
+
+.datePicker_box{
+  padding-left: 0;
+}
+.datePicker_box .picker{
+  border-radius: 10rpx;
+  border-color: #DDD;
+}
+.datePicker_box .cross_line{
+  width: 23rpx;
+  background-color: #DDD;
+  margin: 0 55rpx;
+}

@@ -1,0 +1,160 @@
+/**index.wxss**/
+page{
+  background-color: #F2F2F2;
+}
+.container >view{
+  margin-bottom: 10rpx;
+  width: 750rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.topHalf{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search{
+  width: 606rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  background-color: #F6F6F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 22rpx;
+  margin-bottom: 20rpx;
+}
+.search image{
+  width: 19rpx;
+  height: 19rpx;
+  margin-right:20rpx;
+}
+
+swiper{
+  width: 100%;
+}
+.swiper-item-images{
+  width: 100%;
+  height: 380rpx;
+}
+.sort{
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.sort >view{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sort >view image{
+  max-width: 52rpx;
+  max-height: 52rpx;
+}
+.sort >view text{
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.hot .title{
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 600;
+  height: 87rpx;
+  display: flex;
+  align-items: center;
+
+}
+.hot .title image{
+  width: 7rpx;
+  height: 25rpx;
+  margin-right: 30rpx;
+}
+/* .hot .car_list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hot .car_img{
+  width: 287rpx;
+  height: 167rpx;
+}
+.hot .car_box{
+  width: 304rpx;
+  overflow: hidden;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40rpx 0;
+}
+.hot .car_box .name{
+  color: #333;
+  font-size: 24rpx;
+}
+.hot .car_box .name text{
+  font-size: 32rpx;
+  margin: 0 20rpx;
+}
+.hot .car_box .name image{
+  width: 26rpx;
+  height: 28rpx;
+}
+.hot .car_box .size{
+  font-size: 24rpx;
+  color: #999;
+}
+.hot .car_box .price{
+  font-size: 24rpx;
+  display: flex;
+  align-items: flex-end;
+}
+.hot .car_box .price .discount{
+  color: #E61E1E;
+  margin-right: 26rpx;
+}
+.hot .car_box .price .discount text{
+  font-size: 30rpx;
+}
+.hot .car_box .price .cost{
+  color:#A9A9A9;
+  text-decoration: line-through;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}

@@ -1,0 +1,36 @@
+<!--pages/my/authentication/identity/identity.wxml-->
+<view class="container">
+  <view class="picture_upload">
+    <view class="tips">您可以上传身份证照片自动识别，或手动填写</view>
+    <view class="picture_box">
+      <view bindtap="chooseImage" data-tag="photoPath1">
+        <image wx:if="{{photoPath1.length<=0}}" src="../../../../image/my/picture_upload_bg1.png"></image>
+        <view class="imgBox" wx:else>
+          <image src="{{photoPath1[0]}}" catchtap="previewImage" data-item="{{photoPath1[0]}}" data-tag="photoPath1" mode="aspectFit" ></image>
+          <text class="fa fa-trash-o" catchtap="deleteImg" data-tag="photoPath1" ></text>
+        </view>
+      </view>
+      <view bindtap="chooseImage" data-tag="photoPath2">
+        <image wx:if="{{photoPath2.length<=0}}" src="../../../../image/my/picture_upload_bg2.png"></image>
+        <view class="imgBox" wx:else>
+          <image src="{{photoPath2[0]}}" catchtap="previewImage" data-item="{{photoPath2[0]}}" data-tag="photoPath2" mode="aspectFit" ></image>
+          <text class="fa fa-trash-o" catchtap="deleteImg" data-tag="photoPath2" ></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="input_box">
+    <view>
+      <label>真实姓名</label>
+      <input placeholder="请输入您的真实姓名" />
+    </view>
+    <view>
+      <label>身份证号</label>
+      <input placeholder="请输入您的身份证号" />
+    </view>
+  </view>
+  <view class="btn">确认提交</view>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
+</view>

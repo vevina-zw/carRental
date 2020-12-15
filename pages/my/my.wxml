@@ -1,0 +1,26 @@
+<!--pages/my/my.wxml-->
+<view class="container">
+  <view class="my-info">
+    <image class="info_bg" src="../../image/my/bg.png"></image>
+    <view class="info_box">
+      <image src="{{headImg}}"></image>
+      <view class="text_box">
+        <text class="name">{{nickName}}</text>
+        <text class="phone" wx:if="{{phone}}">{{phone}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="my-lists">
+    <view class="list" wx:for="{{listsData}}" wx:key="index" data-url="{{item.linkPath}}" bindtap="linkPage">
+      <view class="left">
+        <image mode="aspectFit" src="{{item.iconPath}}"></image>
+        {{item.name}}
+      </view>
+      <image src="../../image/my/list_icon_right.png"></image>
+    </view>
+  </view>
+  <view class="btn blue_gradient">退出登录</view>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
+</view>

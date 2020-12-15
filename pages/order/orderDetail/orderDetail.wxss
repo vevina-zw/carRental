@@ -1,0 +1,156 @@
+/* pages/order/orderDetail/orderDetail.wxss */
+@import "../order.wxss";
+.order_status{
+  width: 582rpx;
+  height: 160rpx;
+  padding: 0 84rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.order_status:before{
+  content: "";
+  width: 517rpx;
+  height: 4rpx;
+  background-color: #E6EEFC;
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -258.5rpx;
+  top: 60rpx;
+  z-index: 0;
+}
+.order_status >view{
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 18rpx;
+}
+.order_status .current{
+  color: #FF7645;
+}
+.order_status .past image{
+  width: 42rpx;
+  height: 42rpx;
+}
+.order_status .current image{
+  width: 68rpx;
+  height: 68rpx;
+}
+.order_status .after image{
+  width: 37rpx;
+  height: 37rpx;
+}
+
+.order_overtime{
+  width: 750rpx;
+  height: 160rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order_overtime image{
+  width: 77rpx;
+  height: 63rpx;
+  margin-right: 45rpx;
+}
+.order_overtime text{
+  font-size: 36rpx;
+  color: #F9594D;
+  font-weight: 600;
+}
+
+.price_detail{
+  width: 750rpx;
+  margin-bottom: 10rpx;
+  background-color: #fff;
+}
+.price_detail >view{
+  width: 690rpx;
+  height: 105rpx;
+  padding: 0 30rpx;
+  border-top: 1rpx solid #DDD;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price_detail >view:first-child{
+  border-top: none;
+}
+.price_detail >view text{
+  color: #999;
+  font-size: 22rpx;
+  margin-right: 30rpx;
+}
+.price_detail .grey{
+  color: #999;
+}
+
+.service{
+  color: #9EBDFF;
+  font-size: 22rpx;
+  margin:40rpx auto;
+  background: transparent;
+}
+
+.container{
+  position: relative;
+  margin-bottom: 96rpx;
+}
+.order_handle{
+  width: 750rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.order_handle .service_btn{
+  width: 750rpx;
+  height: 96rpx;
+  background-color: #1F4BA8;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order_handle .pay_box{
+  width: 750rpx;
+  height: 96rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order_handle .pay_box .except{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order_handle .pay_box .price{
+  font-size: 22rpx;
+  margin-left: 30rpx;
+}
+.order_handle .pay_box .price text{
+  font-size: 30rpx;
+  color: #F9594D;
+}
+.order_handle .pay_box .count_down{
+  font-size: 20rpx;
+  color: #9EBDFF;
+  margin-right: 10rpx;
+}
+.order_handle .btn{
+  width: 246rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 0;
+}

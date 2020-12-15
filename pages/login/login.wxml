@@ -1,0 +1,8 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn blue_gradient" wx-if="{{!token}}">微信授权登录</button>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="btn blue_gradient" wx:if="{{token && !isBindPhone}}">绑定手机号</button>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
+</view>

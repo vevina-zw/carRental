@@ -1,0 +1,74 @@
+/* pages/car/bookCar/bookCar.wxss */
+@import "../../order/orderDetail/orderDetail.wxss";
+.tab_content{
+  margin-top: 0;
+}
+.tab_content .order_list{
+  background-color: transparent;
+  margin-bottom: 20rpx;
+}
+.tab_content .order_car{
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.tab_content .order_time{
+  background-color: #fff;
+}
+
+.order_way{
+  width: 750rpx;
+  background-color: #fff;
+}
+.order_on_home,.address_box,.order_on_shop{
+  width: 690rpx;
+  height: 106rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #DDD;
+}
+.order_on_home >view{
+  font-size: 24rpx;
+  color: #999;
+}
+.order_on_home >view text{
+  font-size: 28rpx;
+  color: #333;
+  margin-right: 22rpx;
+}
+.order_on_home switch{
+  zoom: .7;
+}
+.address_box .input_box{
+  flex: 1;
+  padding-right: 20rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+}
+.address_box .input_box input{
+  flex:1;
+}
+.address_box .input_box text,.order_on_shop text{
+  color: #333;
+  width: 78rpx;
+  flex-shrink: 0;
+}
+.address_box .radio{
+  width: 145rpx;
+  flex-shrink: 0;
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+.address_box .radio radio{
+  zoom: .7;
+}
+.order_on_shop{
+  justify-content: flex-start;
+  font-size: 24rpx;
+  color: #999;
+  border-bottom: 1rpx solid #DDD;
+}

@@ -1,0 +1,22 @@
+<!--pages/my/contactUs/contactUs.wxml-->
+<view class="container">
+  <view class="page_title">杭兴汽车租赁</view>
+  <view class="title_bar">
+    <text></text>
+    关于我们
+  </view>
+  <view class="about_us">
+    <view>杭兴汽车租赁有限公司一直秉承以用户需求为核心，优质、用心的服务赢得了众多顾客的信赖和好评，在杭州逐渐树立起公司良好品牌。 </view>
+    <view>杭兴汽车租赁有限公司以客户满意为服务宗旨，服务于更多的杭州汽车租赁的顾客！您的满意是我们永恒的追求！</view>
+  </view>
+  <view class="title_bar">
+    <text></text>
+    联系方式
+  </view>
+  <view class="contact_way">
+    <view wx:for="{{contactWay}}" wx:key="index">
+      <image mode="aspectFit" src="{{item.icon}}"></image>
+      {{item.content}}
+    </view>
+  </view>
+</view>
