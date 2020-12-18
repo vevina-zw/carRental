@@ -179,8 +179,7 @@ Page({
           let storeAddress = res.data.data.address;//店面地址
           let sendPrice= res.data.data.sendPrice;//送车费用
           let getPrice= res.data.data.getPrice;//取车费用
-          // let basicRatio = res.data.data.jiChu;//基础服务费
-          let basicRatio = 0.2;//基础服务费
+          let basicRatio = res.data.data.jiChu;//基础服务费
           _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio})
           _this.calcOnRentPrice();
           _this.calcPrice()
