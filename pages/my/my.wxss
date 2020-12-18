@@ -42,6 +42,13 @@
   justify-content: space-between;
   height: 120rpx;
 }
+.my-lists button.list{
+  padding: 0;
+  background: transparent;
+}
+.my-lists button.list::after {
+  border: none;
+}
 .my-lists .list .left{
   display: flex;
   align-items: center;

@@ -1,7 +1,8 @@
 <!--pages/login/login.wxml-->
 <view class="container">
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn blue_gradient" wx-if="{{!token}}">微信授权登录</button>
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="btn blue_gradient" wx:if="{{token && !isBindPhone}}">绑定手机号</button>
+  <image src="../../image/login/login_bg.png"></image>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn" wx-if="{{!token}}">微信用户一键登录</button>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="btn bind_btn" wx:if="{{token && !isBindPhone}}">一键绑定本机号码</button>
 
   <!-- 自定义弹窗组件 -->
   <toast id='toast'></toast>

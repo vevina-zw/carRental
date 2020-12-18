@@ -52,16 +52,16 @@
       <!-- 日期 -->
       <view class="list_content order_time">
         <view class="time_box">
-          <!-- 10月31日 -->
-          {{rentStartTime}}
+          {{rentStartDate}}
+          <text>{{rentStartTime}}</text>
         </view>
         <view class="time_through">
           <text>{{differenceDay}}天</text>
           <image src="../../../image/common/time_through.png"></image>
         </view>
         <view class="time_box">
-          <!-- 12月31日 -->
-          {{rentEndTime}}
+          {{rentEndDate}}
+          <text>{{rentEndTime}}</text>
         </view>
       </view>
     </view>
@@ -71,11 +71,19 @@
   <view class="price_detail">
     <view>
       <view>车辆租金</view>
-      <view><text>{{carInfo.discountPrice}}元 X {{differenceDay}}</text>{{rentPrice}}元</view>
+      <view><text>{{carInfo.discountPrice}}元 X {{differenceDay}}天</text>{{rentPrice}}元</view>
     </view>
     <view wx:if="{{onHomeSwitch}}">
       <view>上门取送费</view>
       <view>{{onHomePrice}}元</view>
+    </view>
+    <view>
+      <view>优享服务费<image src="../../../image/common/tips_icon.png"></image></view>
+      <view>{{carInfo.youxiangFee}}元<switch color="#1F4BA8" checked="{{vipServeSwitch}}" bindchange="vipServeSwitchChange"/></view>
+    </view>
+    <view>
+      <view>基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
+      <view><text>{{rentPrice}}元 X {{basicRatio}}</text>{{basicPrice}}元</view>
     </view>
     <view>
       <view>租车费用总计</view>

@@ -1,6 +1,6 @@
 // pages/car/bookCar/bookCar.js
 const config = require('../../../config/config');
-const { formatTimeStamp,formatDateDifference } = require('../../../utils/util');
+const { formatTimeStamp,formatDateDifference,formatDateTimeDifference } = require('../../../utils/util');
 Page({
 
   /**
@@ -12,8 +12,15 @@ Page({
     isHomeTake: true,//是否-上门取车
     homeSendAddress:'',//送车上门地址
     homeTakeAddress:'',//上门取车地址
-    rentStartTime:'',//起租日期
-    rentEndTime:'',//结束日期
+    vipServeSwitch: true,//是否优享服务
+    // rentStartTime:'',//起租日期
+    // rentEndTime:'',//结束日期
+    rentStartDate:'',//起租日-日期
+    rentStartTime:'',//起租日-时间
+    rentEndDate:'',//结束日-日期
+    rentEndTime:'',//结束日-时间
+    beginTime:'',//起租日-日期 时间
+    endTime:'',//结束日-日期 时间
     differenceDay: '',//租用天数
     carCode: '',//车辆no
     carInfo: null,//存放接口返回车辆信息
@@ -21,6 +28,8 @@ Page({
     sendPrice: 0,//送车费用
     getPrice: 0,//取车费用
     onHomePrice: 0,//上门取送费 sendPrice/getPrice/sendPrice+getPrice
+    basicRatio: 0,//基础服务费-系数
+    basicPrice: 0,//基础服务费
     rentPrice: 0,//总租金 每天租金*租用天数
     totalPrice: 0,//租车费用总计，不含押金
     token: "",
@@ -39,10 +48,19 @@ Page({
       })
     }else{}
 
+    let rentStartDate = options.rentStartDate,
+    rentStartTime = options.rentStartTime,
+    rentEndDate = options.rentEndDate,
+    rentEndTime = options.rentEndTime;
+    let beginTime = rentStartDate+' '+rentStartTime;
+    let endTime = rentEndDate+' '+rentEndTime;
+
     this.setData({
-      rentStartTime: options.rentStartTime,
-      rentEndTime: options.rentEndTime,
-      differenceDay: formatDateDifference(options.rentStartTime,options.rentEndTime) +1,
+      rentStartDate,rentStartTime,rentEndDate,rentEndTime,beginTime,endTime,
+      // rentStartTime: options.rentStartTime,
+      // rentEndTime: options.rentEndTime,
+      // differenceDay: formatDateDifference(options.rentStartTime,options.rentEndTime) +1,
+      differenceDay: formatDateTimeDifference(beginTime,endTime),
       carCode: options.carCode
     })
 
@@ -119,6 +137,13 @@ Page({
     })
     _this.calcPrice();
   },
+  vipServeSwitchChange: function(e){
+    let _this = this;
+    _this.setData({
+      vipServeSwitch: e.detail.value
+    })
+    _this.calcPrice();
+  },
   homeSendAddress: function(e){
     this.setData({
       homeSendAddress: e.detail.value
@@ -131,13 +156,13 @@ Page({
   },
   checkTime: function(){
     let _this = this;
-    if(!_this.data.rentStartTime || !_this.data.rentEndTime){
+    if(!_this.data.beginTime || !_this.data.endTime){
       _this.dialog.showToast('请返回上一页选择租用日期');//自定义弹窗组件
       return;
     }
     let data = {
-      beginTime: formatTimeStamp(_this.data.rentStartTime),
-      endTime: formatTimeStamp(_this.data.rentEndTime),
+      beginTime: formatTimeStamp(_this.data.beginTime),
+      endTime: formatTimeStamp(_this.data.endTime),
       no: _this.data.carCode
     }
     wx.request({
@@ -150,12 +175,13 @@ Page({
       success(res) {
         console.log(res.data.data);
         if (res.data.result == "100") {//调用接口返回数据成功，即为该日期内可用
-          debugger;
           let carInfo = res.data.data.carInfo;
           let storeAddress = res.data.data.address;//店面地址
           let sendPrice= res.data.data.sendPrice;//送车费用
           let getPrice= res.data.data.getPrice;//取车费用
-          _this.setData({carInfo,storeAddress,sendPrice,getPrice})
+          // let basicRatio = res.data.data.jiChu;//基础服务费
+          let basicRatio = 0.2;//基础服务费
+          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio})
           _this.calcOnRentPrice();
           _this.calcPrice()
         }else{
@@ -186,10 +212,14 @@ Page({
       sendPrice = sendPrice;
       getPrice = getPrice;
     }
-    let onHomePrice = Number(sendPrice) + Number(getPrice);
+    let onHomePrice = Number(sendPrice) + Number(getPrice);//上门取送费
 
-    let rentPrice = this.data.rentPrice;//车辆租金 总
-    let totalPrice = Number(onHomePrice) + Number(rentPrice);
+    let rentPrice = _this.data.rentPrice;//车辆租金 总
+
+    let youxiangFee = _this.data.vipServeSwitch ? _this.data.carInfo.youxiangFee : 0;//优享服务费
+    let basicPrice = _this.data.basicPrice;//基础服务费
+
+    let totalPrice = Number(onHomePrice) + Number(rentPrice) + Number(youxiangFee) + Number(basicPrice);
 
     this.setData({onHomePrice,onHomeSwitch,totalPrice})
   },
@@ -197,7 +227,11 @@ Page({
     let discountPrice = this.data.carInfo.discountPrice;
     let differenceDay = this.data.differenceDay;
     let rentPrice = Number(discountPrice) * Number(differenceDay);
-    this.setData({rentPrice})
+
+    let basicRatio = this.data.basicRatio;
+    let basicPrice = Number(rentPrice) * Number(basicRatio);
+
+    this.setData({rentPrice,basicPrice})
   },
   addOrder: function(){
     let _this = this;
@@ -212,11 +246,14 @@ Page({
       return;
     }
     let data = {
-      beginTime: formatTimeStamp(_this.data.rentStartTime),
-      endTime: formatTimeStamp(_this.data.rentEndTime),
-      getAddress: _this.data.isHomeSend ? _this.data.homeSendAddress : null,
-      sendAddress: _this.data.isHomeTake ? _this.data.homeTakeAddress : null,
-      no: _this.data.carCode
+      // beginTime: formatTimeStamp(_this.data.rentStartTime),
+      // endTime: formatTimeStamp(_this.data.rentEndTime),
+      beginTime: formatTimeStamp(_this.data.beginTime),
+      endTime: formatTimeStamp(_this.data.endTime),
+      getAddress: _this.data.isHomeSend ? _this.data.homeSendAddress : '',
+      sendAddress: _this.data.isHomeTake ? _this.data.homeTakeAddress : '',
+      no: _this.data.carCode,
+      jiChu: _this.data.vipServeSwitch,//是否选择优享服务
     }
     debugger
     wx.request({
@@ -228,20 +265,23 @@ Page({
         'token': _this.data.token,
       },
       success(res) {
-        debugger;
         console.log(res.data.data);
-        if(res.data.code == '105' && res.data.message.indexOf('手机') !=-1){//请填写手机号——没有绑定手机号
+        if(res.data.code == '105' && (res.data.message.indexOf('登录') !=-1 || res.data.message.indexOf('手机') !=-1)){//未登录；请填写手机号——没有绑定手机号
           wx.navigateTo({
             url: '/pages/login/login',
           })
-        }else if(res.data.code == '105' && res.data.message.indexOf('实名') !=-1){//请实名认证——没有认证身份证和驾驶证
+        }else if(res.data.code == '105' && res.data.message.indexOf('实名') !=-1){//请实名认证——没有认证身份证
           wx.navigateTo({
             url: '/pages/my/authentication/identity/identity',
+          })
+        }else if(res.data.code == '105' && res.data.message.indexOf('驾驶证') !=-1){//请上传驾驶证——没有认证驾驶证
+          wx.navigateTo({
+            url: '/pages/my/authentication/driver/driver',
           })
         }
         if (res.data.result == "100") {//调用接口返回数据成功
           wx.switchTab({
-            url: 'pages/search/searchResult/searchResult',
+            url: '/pages/order/order',
           })
         }else{
           _this.dialog.showToast(res.data.message);//自定义弹窗组件

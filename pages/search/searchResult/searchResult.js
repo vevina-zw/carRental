@@ -16,16 +16,16 @@ Page({
     ],
     currentTab: 0,
     showConditionPanel: false,
-
-    searchValue: '',
+    brandData:{},//品牌列表
+    searchValue: '',//搜索关键字
     queryData:{
-      "brandCode": "",
+      "brand": "",
       "hot_flag": 0,
       "pageNo": 1,
       "pageSize": 10,
-      "price_high": 0,
-      "price_low": 0,
-      "price_order": 0,
+      "price_high": null,
+      "price_low": null,
+      "price_order": null,
       "searchStr": ""
     },
     loading_more: false,
@@ -47,7 +47,8 @@ Page({
           });
       }
     });
-    _this.getCarListFunc();
+
+    _this.getHotBrand();
   },
 
   /**
@@ -61,14 +62,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let queryData = this.data.queryData;
+    queryData.brand = app.globalData.brand || null;
+    queryData.searchStr = app.globalData.searchValue || null;
+    let searchValue = app.globalData.searchValue || null;
+    this.setData({queryData,searchValue})
+    this.getCarListFunc();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    app.globalData.searchValue = '';
+    app.globalData.brand = '';
   },
 
   /**
@@ -100,8 +107,9 @@ Page({
   },
 
   clickCondition: function(e){
-    if (this.data.currentTab == e.currentTarget.dataset.idx){
-      return;
+    if (this.data.showConditionPanel && (this.data.currentTab == e.currentTarget.dataset.idx)){
+      this.closeConditionPanel()
+      return
     }
     this.setData({
       currentTab: e.currentTarget.dataset.idx,
@@ -113,17 +121,63 @@ Page({
       searchValue: e.detail.value
     })
   },
+  closeConditionPanel: function(){
+    this.setData({
+      showConditionPanel: false
+    })
+  },
+
+  getHotBrand: function(){
+    let _this = this;
+    wx.request({
+      method: "GET",
+      url: config.getHotBrand_url,
+      success(res){
+        console.log(res);
+        if (res.data.result=="100"){//调用接口返回数据成功
+          let brandData = JSON.parse(res.data.data);
+          _this.setData({brandData})
+        }else{
+          _this.dialog.showToast(res.data.message);//自定义弹窗组件
+        }
+      },
+      fail(res) {//连接服务失败
+        _this.dialog.showToast(res.errMsg);//自定义弹窗组件
+      }
+    })
+  },
+
   setQueryItem: function(e){
     let sortType = e.currentTarget.dataset.stype;
-    let price_order = Number(e.currentTarget.dataset.order) || 0;
-    let brandCode = e.currentTarget.dataset.brand || null
-    let price_high = Number(e.currentTarget.dataset.hprice) || null;
-    let price_low = Number(e.currentTarget.dataset.lprice) || null;
+    let price_order,price_high,price_low;
+    //undefined是未点击该类目；""是点击全部 传""
+    if(e.currentTarget.dataset.order == undefined){
+      price_order = this.data.queryData.price_order;
+    }else if(e.currentTarget.dataset.order == ""){
+      price_order = null;
+    }else{
+      price_order = Number(e.currentTarget.dataset.order);
+    }
+    if((this.data.queryData.price_low == Number(e.currentTarget.dataset.lprice) && this.data.queryData.price_high == Number(e.currentTarget.dataset.hprice))
+        || (this.data.queryData.price_low == Number(e.currentTarget.dataset.lprice) && !e.currentTarget.dataset.hprice)){
+      //再次点击,取消选中
+      price_high = null;
+      price_low = null;
+    }else{
+      debugger
+      price_high = e.currentTarget.dataset.hprice!=undefined ? Number(e.currentTarget.dataset.hprice) : this.data.queryData.price_high;
+      price_low = e.currentTarget.dataset.lprice!=undefined ? Number(e.currentTarget.dataset.lprice) : this.data.queryData.price_low;
+    }
+    // let price_order = e.currentTarget.dataset.order!=undefined ? Number(e.currentTarget.dataset.order) : this.data.queryData.price_order;
+    let brand = e.currentTarget.dataset.brand!=undefined ? e.currentTarget.dataset.brand : this.data.queryData.brand;
+    // let price_high = e.currentTarget.dataset.hprice!=undefined ? Number(e.currentTarget.dataset.hprice) : this.data.queryData.price_high;
+    // let price_low = e.currentTarget.dataset.lprice!=undefined ? Number(e.currentTarget.dataset.lprice) : this.data.queryData.price_low;
     let searchStr = this.data.searchValue;
     let hot_flag = 0;
     let pageNo = 1;
     let pageSize = 10;
-    let queryData = {price_order,brandCode,price_high,price_low,searchStr,hot_flag,pageNo,pageSize}
+    let queryData = {price_order,brand,price_high,price_low,searchStr,hot_flag,pageNo,pageSize}
+    debugger
     this.setData({queryData,showConditionPanel:false})
     this.getCarListFunc();
   },
@@ -151,9 +205,8 @@ Page({
 
           _this.setData({carLists})
           
-
           let warn = ''
-          if(!res.data.data.hasNextPage && !res.data.data.hasPrePage){
+          if(!res.data.data.hasNextPage && !res.data.data.hasPrePage && res.data.data.list.length<=0){
             warn = '暂无数据'
           }else if(!res.data.data.hasNextPage){//无下一页
             warn = '已全部加载完成'

@@ -7,46 +7,76 @@
 
   <!-- 列表 -->
   <view class="tab_content">
-    <view class="order_list" bindtap="goToDetail">
+    <view class="order_list" wx:for="{{orderLists}}" wx:key="index"
+     bindtap="goToDetail" data-id="{{item.id}}">
       <view class="order_basic">
-        <text class="order_id">订单编号:202010310019</text>
+        <text class="order_id">订单编号:{{item.no}}</text>
         <!-- blue/red ↓-->
-        <text class="order_status red">待支付</text>
+        <!-- intention:待客服确认    wait_pay:待支付  payed:进行中   success：已完成   un_payed:超时未支付 refuse：客服拒绝 -->
+        <text class="order_status blue" wx:if="{{item.status == 'intention'}}">待客服确认</text>
+        <text class="order_status red" wx:if="{{item.status == 'wait_pay'}}">待支付</text>
+        <text class="order_status blue" wx:if="{{item.status == 'payed'}}">进行中</text>
+        <text class="order_status blue" wx:if="{{item.status == 'success'}}">已结束</text>
+        <text class="order_status red" wx:if="{{item.status == 'un_payed'}}">超时未支付</text>
+        <text class="order_status red" wx:if="{{item.status == 'refuse'}}">客服拒绝</text>
       </view>
       <view class="list_content order_car">
-        <image class="car_img" src="../../image/index/sort_Mercedes.png"></image>
+        <image class="car_img" src="{{item.carInfo.carFrontPic}}"></image>
         <view class="car_box">
           <view>
             <view class="name">
-              奥迪<text>A4L 2.0T</text>
-              <image src="../../image/common/label_icon3.png"></image>
+              <!-- {{item.carInfo.brand}}<text> {{item.carInfo.brandSub}} {{item.carInfo.displacement}}T</text> -->
+              {{item.title}}
+              <image wx:if="{{item.carInfo.ownerFlag == 'YES'}}" src="../../image/common/label_icon3.png"></image>
             </view>
-            <view class="size">浙A****01</view>
-            <view class="size">日均限200km</view>
+            <view class="size">{{item.carInfo.licenseNo}}</view>
+            <view class="size">日均限{{item.carInfo.limitMile}}km</view>
           </view>
         </view>
       </view>
       <view class="list_content order_time">
-        <view class="time_box">10月31日</view>
+        <view class="time_box">
+          {{item.startDay}}
+          <text>{{item.startTime}}</text>
+        </view>
         <view class="time_through">
-          <text>60天</text>
+          <text>{{item.differenceDay}}天</text>
           <image src="../../image/common/time_through.png"></image>
         </view>
-        <view class="time_box">12月31日</view>
-      </view>
-      <view class="list_content order_address">
-        <view class="left">自取/上门取车</view>
-        <view class="right">
-          杭州市余杭区莫干山路1888号附近
+        <view class="time_box">
+          {{item.endDay}}
+          <text>{{item.endTime}}</text>
         </view>
       </view>
-      <view class="list_content order_pay">
-        <view class="price">总计：¥<text>999</text></view>
-        <view class="btn blue_gradient">立即支付</view>
+      <view class="list_content order_address">
+        <view wx:if="{{item.sendAddress && item.sendAddress!='null'}}">
+          <view class="left">送车上门</view>
+          <view class="right">
+            {{item.sendAddress}}
+          </view>
+        </view>
+        <view wx:if="{{item.getAddress && item.getAddress!='null'}}">
+          <view class="left">上门取车</view>
+          <view class="right">
+            {{item.getAddress}}
+          </view>
+        </view>
+        <view wx:if="{{(!item.sendAddress && !item.getAddress) || (item.sendAddress =='null' && item.getAddress=='null')}}">
+          <view class="left">自取</view>
+          <view class="right">
+            {{item.address}}
+          </view>
+        </view>
+      </view>
+      <view class="list_content order_pay" wx:if="{{item.status == 'wait_pay'}}">
+        <view class="price">总计：¥<text>{{item.price}}</text></view>
+        <view class="btn blue_gradient" catchtap="toPay" data-no="{{item.no}}">立即支付</view>
       </view>
     </view>
   </view>
 
-    <!-- 自定义弹窗组件 -->
-    <toast id='toast'></toast>
+  <view class="load_warn" wx:if="{{orderLists.length<=0}}">------暂无数据------</view>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
 </view>

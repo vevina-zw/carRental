@@ -25,7 +25,9 @@
       <view class="cost">￥{{carInfo.normalPrice}}/天</view>
       <view class="discount">￥<text>{{carInfo.discountPrice}}</text>/天</view>
     </view>
-    <view class="model">{{carInfo.brand}} {{carInfo.brandSub}} {{carInfo.displacement}}T 
+    <view class="model">
+      <!-- {{carInfo.brand}} {{carInfo.brandSub}} {{carInfo.displacement}}T  -->
+      {{carInfo.title}}
       <image wx:if="{{carInfo.ownerFlag == 'YES'}}" src="../../../image/common/label_icon3.png"></image>
     </view>
     <view class="size">
@@ -46,7 +48,7 @@
       <text></text>
       可租用时间
     </view>
-    <view class="datePicker_box">
+    <!-- <view class="datePicker_box">
       <picker mode="date" value="{{rentStartTime}}" bindchange="bindStartDateChange">
         <view class="picker">
           <text class="label" wx:if="{{!rentStartTime}}">起始时间</text>
@@ -59,6 +61,24 @@
         <view class="picker">
           <text class="label" wx:if="{{!rentEndTime}}">结束时间</text>
           {{rentEndTime}}
+          <image src="../../../image/car/date_picker_icon.png"></image>
+        </view>
+      </picker>
+    </view> -->
+    <view class="datePicker_box">
+      <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="picker">
+          <text class="label" wx:if="{{!dateTime}}">起始时间</text>
+          <!-- {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}:{{dateTimeArray[5][dateTime[5]]}} -->
+          {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
+          <image src="../../../image/car/date_picker_icon.png"></image>
+        </view>
+      </picker>
+      <text class="cross_line"></text>
+      <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+        <view class="picker">
+          <text class="label"  wx:if="{{!dateTime}}">结束时间</text>
+          {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
           <image src="../../../image/car/date_picker_icon.png"></image>
         </view>
       </picker>

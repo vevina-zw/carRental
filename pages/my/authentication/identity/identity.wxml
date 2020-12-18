@@ -22,14 +22,14 @@
   <view class="input_box">
     <view>
       <label>真实姓名</label>
-      <input placeholder="请输入您的真实姓名" />
+      <input placeholder="请输入您的真实姓名" bindinput="getName" />
     </view>
     <view>
       <label>身份证号</label>
-      <input placeholder="请输入您的身份证号" />
+      <input placeholder="请输入您的身份证号" bindinput="getIdNo" />
     </view>
   </view>
-  <view class="btn">确认提交</view>
+  <view class="btn" bindtap="addRealUser">确认提交</view>
 
   <!-- 自定义弹窗组件 -->
   <toast id='toast'></toast>

@@ -11,15 +11,15 @@ Page({
   data: {
     listsData: [
       {iconPath:'../../image/my/list_icon1.png', name:'身份验证', linkPath:'/pages/my/authentication/identity/identity'},
-      {iconPath:'../../image/my/list_icon2.png', name:'在线客服'},
-      {iconPath:'../../image/my/list_icon3.png', name:'意见反馈'},
+      {iconPath:'../../image/my/list_icon2.png', name:'在线客服', type:'button'},
+      // {iconPath:'../../image/my/list_icon3.png', name:'意见反馈'},
       {iconPath:'../../image/my/list_icon4.png', name:'联系我们', linkPath:'/pages/my/contactUs/contactUs'},
       {iconPath:'../../image/my/list_icon5.png', name:'服务条款'},
     ],
     token:'',
     phone:'',//手机号
     nickName:'',//昵称
-    headImg:''//头像
+    headImg:'',//头像
   },
 
   /**
@@ -27,17 +27,6 @@ Page({
    */
   onLoad: function (options) {
     this.dialog = this.selectComponent("#toast");
-    var token = wx.getStorageSync('token');
-    if (token) {//登录状态
-      this.setData({
-        token: token
-      })
-      this.queryUserInfo()
-    }else{
-      wx.navigateTo({
-        url: '/pages/login/login',
-      })
-    }
   },
 
   /**
@@ -51,7 +40,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var token = wx.getStorageSync('token');
+    if (token) {//登录状态
+      this.setData({
+        token: token
+      })
+      this.queryUserInfo()
+    }
   },
 
   /**
@@ -95,6 +90,12 @@ Page({
     })
   },
 
+  goToLogin: function(){
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
+
   //获取用户信息
   queryUserInfo: function(){
     let _this = this;
@@ -107,11 +108,20 @@ Page({
       },
       success(res){
         if (res.data.result=="100"){//调用接口返回数据成功
-          let data = res.data.data;
+          let data = res.data.data || '';
           let phone = data.phone;
           let nickName = data.nickName;
           let headImg = data.headImg;
-          _this.setData({phone,nickName,headImg})
+          let listsData = _this.data.listsData;
+          if(data.idcardNo && !data.drivingLicenseNo){//有身份证、无驾驶证
+            listsData[0].linkPath = `/pages/my/authentication/result/result?userName=${data.userName}&idcardNo=${data.idcardNo}&phone=${data.phone}`
+          }else if(data.idcardNo && data.drivingLicenseNo){//有身份证、有驾驶证
+            listsData[0].linkPath = `/pages/my/authentication/information/information?idcardFrontImg=${data.idcardFrontImg}&idcardBackImg=${data.idcardBackImg}&drivingLicenseFirstImg=${data.drivingLicenseFirstImg}&drivingLicenseSecondImg=${data.drivingLicenseSecondImg}`
+          }else{//无身份证
+            listsData[0].linkPath = `/pages/my/authentication/identity/identity`
+          }
+          _this.setData({phone,nickName,headImg,listsData})
+          app.globalData.userInfo = data;
         }else{
           _this.dialog.showToast(res.data.message);//自定义弹窗组件
         }

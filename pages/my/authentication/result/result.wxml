@@ -8,15 +8,15 @@
   <view class="authen_info">
     <view>
       <text>真实姓名</text>
-      <text>姓名</text>
+      <text>{{userName}}</text>
     </view>
     <view>
       <text>身份证号</text>
-      <text>230311789012345678</text>
+      <text>{{idcardNo}}</text>
     </view>
     <view>
       <text>手机号</text>
-      <text>12345678901</text>
+      <text>{{phone}}</text>
     </view>
     <view>
       <text>上传驾驶证</text>

@@ -3,7 +3,7 @@
   <!-- 搜索 -->
   <view class="search_box">
     <view class="search">
-      <input placeholder="搜索品牌/关键字" bindinput='getSearchValue' />
+      <input placeholder="搜索品牌/关键字" bindinput='getSearchValue' focus='{true}' />
       <image src="../../image/common/search_icon2.png" bindtap="goSearch"></image>
     </view>
     <!-- <view class="btn blue_gradient" bindtap="goSearch">搜索</view> -->
@@ -21,7 +21,7 @@
       <view>aa1<text>66666</text></view>
       <view>tt<text>33333</text></view>
       <view>奥bbb迪<text>1111</text></view> -->
-      <view wx:for="{{hotSearch}}" wx:key='index'>{{item.name}}<text>{{item.num}}</text></view>
+      <view wx:for="{{hotSearch}}" wx:key='index' bindtap="goSearch" data-brand="{{item.name}}">{{item.name}}<text>{{item.num}}</text></view>
     </view>
   </view>
 

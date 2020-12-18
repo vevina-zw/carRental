@@ -2,7 +2,7 @@
 /**
  * 小程序后端接口配置文件
  */
-var host = "http://120.55.50.219:8082"//测试服务
+var host = "https://hxc.ltb666.com"//测试服务
 
 var config = {
   host,
@@ -33,9 +33,24 @@ var config = {
   
   //GET 订单列表
   orderList_url: `${host}/wx_miniapp/order/order-list`,
+  //GET 订单详情
+  orderInfo_url: `${host}/wx_miniapp/order/order-info`,
 
   //POST 图片上传接口 multipart/form-data
   imgUpload_url: `${host}/common/imgUpload.do`,
+  //GET 身份证正面识别
+  ocrIdCard_url: `${host}/wx/real-user/ocr-id-card`,
+  //GET 驾照正面识别
+  ocrDriver_url: `${host}/wx/real-user/ocr-driver`,
+  //GET 提交身份证实名
+  addRealUser_url: `${host}/wx/real-user/add-real-user`,
+  //POST 提交驾驶证信息
+  addDriver_url: `${host}/wx/real-user/add-driver`,
+
+  //GET 生成微信预订单
+  submitOrder_url: `${host}/wx_miniapp/order/submitOrder.do`,
+  //GET 微信支付异步回调
+  payResult_url: `${host}/wx_miniapp/order/pay-result`,
 };
 //对外把对象config返回
 module.exports = config

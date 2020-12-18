@@ -136,6 +136,13 @@
         {
           "name": "登录",
           "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "认证信息齐全",
+          "pathName": "pages/my/authentication/information/information",
+          "query": "",
           "scene": null
         }
       ]

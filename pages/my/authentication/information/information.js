@@ -1,13 +1,14 @@
-// pages/my/authentication/result/result.js
+// pages/my/authentication/information/information.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userName: '',
-    idcardNo: '',
-    phone: ''
+    idcardFrontImg: '',//身份证正面
+    idcardBackImg: '',//身份证反面
+    drivingLicenseFirstImg: '',//驾驶证正面
+    drivingLicenseSecondImg: '',//驾驶证反面
   },
 
   /**
@@ -15,9 +16,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userName: options.userName,
-      idcardNo: options.idcardNo,
-      phone: options.phone
+      idcardFrontImg: options.idcardFrontImg,
+      idcardBackImg: options.idcardBackImg,
+      drivingLicenseFirstImg: options.drivingLicenseFirstImg,
+      drivingLicenseSecondImg: options.drivingLicenseSecondImg,
     })
   },
 
@@ -68,11 +70,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  goToDriver: function(){
-    wx.navigateTo({
-      url: `/pages/my/authentication/driver/driver?userName=${this.data.userName}`,
-    })
   }
 })

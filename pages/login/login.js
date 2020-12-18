@@ -147,13 +147,13 @@ Page({
               success(res){
                 console.log(res);
                 if (res.data.result=="100"){//调用接口返回数据成功
-                  debugger;
-                  wx.switchTab({
-                    url: '/pages/my/my',
-                    fail: function () {
-                      console.log("跳转失败")
-                    }
-                  })
+                  // wx.switchTab({
+                  //   url: '/pages/my/my',
+                  //   fail: function () {
+                  //     console.log("跳转失败")
+                  //   }
+                  // })
+                  wx.navigateBack()
                 }else{
                   _this.dialog.showToast(res.data.message);//自定义弹窗组件
                 }
@@ -237,15 +237,15 @@ Page({
         success(res){
           console.log(res);
           if (res.data.result=="100"){//调用接口返回数据成功
-            debugger;
             let data = res.data.data;
             if(data.phone){//已绑定手机号，则返回上一页
-              wx.switchTab({
-                url: '/pages/my/my',
-                fail: function () {
-                  console.log("跳转失败")
-                }
-              })
+              // wx.switchTab({
+              //   url: '/pages/my/my',
+              //   fail: function () {
+              //     console.log("跳转失败")
+              //   }
+              // })
+              wx.navigateBack()
             }
           }else{
             _this.dialog.showToast(res.data.message);//自定义弹窗组件

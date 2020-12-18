@@ -4,8 +4,8 @@
     <!-- 搜索 -->
     <view class="search_box">
       <view class="search" bindtap="goToSearch">
-        <input placeholder="搜索品牌/关键字" bindinput='getSearchValue' />
-        <image src="../../../image/common/search_icon2.png"></image>
+        <input placeholder="搜索品牌/关键字" bindinput='getSearchValue' value="{{searchValue}}"/>
+        <image src="../../../image/common/search_icon2.png" bindtap="setQueryItem"></image>
       </view>
       <!-- <view class="btn blue_gradient" bindtap="goSearch">搜索</view> -->
     </view>
@@ -17,24 +17,26 @@
         <image src="../../../image/search/search_icon1.png"></image>
       </view>
     </view>
-    <view class="search_condition_panel" style="height:{{sv_height}}px;" wx:if="{{showConditionPanel}}">
+    <view class="search_condition_panel" style="height:{{sv_height}}px;" wx:if="{{showConditionPanel}}" catchtap="closeConditionPanel">
       <view class="content" wx:if="{{currentTab==0}}">
-        <view>综合排序</view>
-        <view bindtap="setQueryItem" data-stype='multiple' data-order='0'>价格最低</view>
-        <view bindtap="setQueryItem" data-stype='multiple' data-order='1'>价格最高</view>
+        <view catchtap="setQueryItem" data-stype='multiple' data-order='0' class="{{(queryData.price_order!=0 && queryData.price_order!=1) ? 'cur' : ''}}">综合排序</view>
+        <view catchtap="setQueryItem" data-stype='multiple' data-order='0' class="{{queryData.price_order==0 ? 'cur' : ''}}">价格最低</view>
+        <view catchtap="setQueryItem" data-stype='multiple' data-order='1' class="{{queryData.price_order==1 ? 'cur' : ''}}">价格最高</view>
       </view>
       <view class="content" wx:if="{{currentTab==1}}">
-        <view>品牌</view>
-        <view bindtap="setQueryItem" data-stype='brand' data-brand='品牌1'>品牌1</view>
-        <view bindtap="setQueryItem" data-stype='brand' data-brand='品牌2'>品牌2</view>
+        <view catchtap="setQueryItem" data-stype='brand' data-brand='' class="{{!queryData.brand ? 'cur' : ''}}">全部</view>
+        <view wx:for="{{brandData}}" wx:key="index" catchtap="setQueryItem" data-stype='brand' data-brand='{{item.name}}' class="{{queryData.brand==item.name ? 'cur' : ''}}">{{item.name}}</view>
+        <!-- <view bindtap="setQueryItem" data-stype='brand' data-brand='品牌1'>品牌1</view>
+        <view bindtap="setQueryItem" data-stype='brand' data-brand='品牌2'>品牌2</view> -->
       </view>
       <view class="rent_content" wx:if="{{currentTab==2}}">
+        <!-- <view catchtap="setQueryItem" data-stype='price' data-lprice='' data-hprice='' class="{{(!queryData.price_low && !queryData.price_high) ? 'cur' : ''}}">全部</view> -->
         <view>租金</view>
         <view class="text_box">
-          <text bindtap="setQueryItem" data-stype='price' data-lprice='0' data-hprice='150'>0-150</text>
-          <text bindtap="setQueryItem" data-stype='price' data-lprice='150' data-hprice='250'>150-250</text>
-          <text bindtap="setQueryItem" data-stype='price' data-lprice='250' data-hprice='350'>250-350</text>
-          <text bindtap="setQueryItem" data-stype='price' data-lprice='350'>350以上</text>
+          <text catchtap="setQueryItem" data-stype='price' data-lprice='0' data-hprice='150' class="{{(queryData.price_low==0 && queryData.price_high==150) ? 'cur' : ''}}">0-150</text>
+          <text catchtap="setQueryItem" data-stype='price' data-lprice='150' data-hprice='250' class="{{(queryData.price_low==150 && queryData.price_high==250) ? 'cur' : ''}}">150-250</text>
+          <text catchtap="setQueryItem" data-stype='price' data-lprice='250' data-hprice='350' class="{{(queryData.price_low==250 && queryData.price_high==350) ? 'cur' : ''}}">250-350</text>
+          <text catchtap="setQueryItem" data-stype='price' data-lprice='350' class="{{queryData.price_low==350 ? 'cur' : ''}}">350以上</text>
         </view>
       </view>
     </view>
@@ -45,11 +47,12 @@
     bindscrolltoupper="refreshCarList" bindscrolltolower="loadMoreCarList">
     <view class="car_list" wx:for="{{carLists}}" wx:key="index"
       bindtap="goToCarDetail" data-code="{{item.carCode}}">
-      <image class="car_img" src="{{item.detailPic}}"></image>
+      <image class="car_img" src="{{item.carFrontPic}}"></image>
       <view class="car_box">
         <view>
           <view class="name">
-            {{item.brand}}<text> {{item.brandSub}} {{item.displacement}}T </text>
+            <!-- {{item.brand}}<text> {{item.brandSub}} {{item.displacement}}T </text> -->
+            {{item.title}}
             <image wx:if="{{item.ownerFlag == 'YES'}}" src="../../../image/common/label_icon1.png"></image>
           </view>
           <view class="size">{{item.licenseNo}} | 日均限{{item.limitMile}}km</view>

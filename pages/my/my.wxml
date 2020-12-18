@@ -2,24 +2,42 @@
 <view class="container">
   <view class="my-info">
     <image class="info_bg" src="../../image/my/bg.png"></image>
-    <view class="info_box">
+    <view class="info_box" wx:if="{{token && headImg}}">
       <image src="{{headImg}}"></image>
       <view class="text_box">
         <text class="name">{{nickName}}</text>
         <text class="phone" wx:if="{{phone}}">{{phone}}</text>
       </view>
     </view>
-  </view>
-  <view class="my-lists">
-    <view class="list" wx:for="{{listsData}}" wx:key="index" data-url="{{item.linkPath}}" bindtap="linkPage">
-      <view class="left">
-        <image mode="aspectFit" src="{{item.iconPath}}"></image>
-        {{item.name}}
+    <view class="info_box" wx:else bindtap="goToLogin">
+      <image src="../../image/my/default_avatar.png"></image>
+      <view class="text_box">
+        <text class="name">未登录</text>
+        <text class="phone">点击头像登录/注册</text>
       </view>
-      <image src="../../image/my/list_icon_right.png"></image>
     </view>
   </view>
-  <view class="btn blue_gradient">退出登录</view>
+  <view class="my-lists">
+    <block wx:for="{{listsData}}" wx:key="index">
+      <view class="list" bindtap="linkPage" data-url="{{item.linkPath}}"
+        wx:if="{{item.type!='button'}}">
+        <view class="left">
+          <image mode="aspectFit" src="{{item.iconPath}}"></image>
+          {{item.name}}
+        </view>
+        <image src="../../image/my/list_icon_right.png"></image>
+      </view>
+      <button open-type="contact" class="service"
+        class="list" wx:if="{{item.type=='button'}}">
+        <view class="left">
+            <image mode="aspectFit" src="{{item.iconPath}}"></image>
+            {{item.name}}
+          </view>
+          <image src="../../image/my/list_icon_right.png"></image>
+      </button>
+    </block>
+  </view>
+  <!-- <view class="btn blue_gradient">退出登录</view> -->
 
   <!-- 自定义弹窗组件 -->
   <toast id='toast'></toast>

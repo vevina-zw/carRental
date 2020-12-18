@@ -37,67 +37,51 @@ Page({
         "brandName": "豪华跑车",
       },
     ],
-
-
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    
+    queryData:{
+      "hot_flag": 1,
+      "pageNo": 1,
+      "pageSize": 10,
+    },
+    loading_more: false,
   },
   onLoad: function () {
     this.dialog = this.selectComponent("#toast");
     this.getIndexBanner();
     this.getIndexBrand();
+    this.getCarListFunc();
+  },
 
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+    /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if (this.data.loading_more || this.data.warn == '已全部加载完成') {
+      return;
     }
+    let queryData = this.data.queryData;
+    let pageNo =  queryData.pageNo +1;
+    queryData.pageNo = pageNo;
+    this.setData({queryData})
+    this.getCarListFunc();
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-
 
   goToSearch: function(){
     wx.navigateTo({
       url: '/pages/search/search'
     })
   },
-  goToCarDetail: function(){
+  goToCarDetail: function(e){
     wx.navigateTo({
-      url: '/pages/car/carDetail/carDetail'
+      url: `/pages/car/carDetail/carDetail?carCode=${e.currentTarget.dataset.code}`
     })
+  },
+  goSearch: function(e){
+    let brand = e.currentTarget.dataset.brand ? e.currentTarget.dataset.brand: null;
+    wx.switchTab({
+      // url: `/pages/search/searchResult/searchResult?searchValue=$brand=${brand}`,
+      url: '/pages/search/searchResult/searchResult',//wx.switchTab不能传参，放在globalData里
+    })
+    app.globalData.brand = brand;
   },
 
   getIndexBanner: function(){
@@ -148,5 +132,51 @@ Page({
               _this.dialog.showToast(res.errMsg);//自定义弹窗组件
             }
           })
-  }
+  },
+
+  getCarListFunc: function(){
+    let _this = this;
+    _this.setData({loading_more:true})
+    wx.request({
+      method: "POST",
+      url: config.getCarList_url,
+      data: _this.data.queryData,
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data.data);
+        if (res.data.result == "100") {//调用接口返回数据成功
+          console.log(res.data.data)
+          let carLists = res.data.data.list;
+          if (res.data.data.hasPrePage) {//如果不是第一页
+            carLists = _this.data.carLists.concat(carLists);
+          }else{
+            carLists = carLists
+          }
+
+          _this.setData({carLists})
+          
+          let warn = ''
+          if(!res.data.data.hasNextPage && !res.data.data.hasPrePage && res.data.data.list.length<=0){
+            warn = '暂无数据'
+          }else if(!res.data.data.hasNextPage){//无下一页
+            warn = '已全部加载完成'
+          }
+          _this.setData({
+            carLists,warn
+          });
+        }else{
+           _this.dialog.showToast(res.data.message);//自定义弹窗组件
+        }
+      },
+      fail(res) {//连接服务失败
+        _this.dialog.showToast(res.errMsg);//自定义弹窗组件
+      },
+      complete: function () {
+        wx.stopPullDownRefresh();
+        _this.setData({loading_more:false})
+    }
+    })
+  },
 })

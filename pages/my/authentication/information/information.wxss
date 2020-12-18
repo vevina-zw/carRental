@@ -1,0 +1,25 @@
+/* pages/my/authentication/information/information.wxss */
+.card_info{
+  width: 690rpx;
+}
+.card_info text{
+  font-size: 24rpx;
+  line-height: 110rpx;
+  display: block;
+  margin-top: 41rpx;
+}
+.card_info .img_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card_info .img_box >view{
+  width: 316rpx;
+  height: 200rpx;
+  border-radius: 30rpx;
+  background: #000;
+}
+.card_info .img_box >view image{
+  max-width: 100%;
+  max-height: 100%;
+}

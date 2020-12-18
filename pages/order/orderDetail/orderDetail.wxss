@@ -88,6 +88,15 @@
   font-size: 22rpx;
   margin-right: 30rpx;
 }
+.price_detail >view >view{
+  display: flex;
+  align-items: center;
+}
+.price_detail >view image{
+  width: 22rpx;
+  height: 22rpx;
+  margin-left: 9rpx;
+}
 .price_detail .grey{
   color: #999;
 }

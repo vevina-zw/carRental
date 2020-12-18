@@ -1,0 +1,25 @@
+<!--pages/my/authentication/information/information.wxml-->
+<view class="container">
+  <view class="card_info">
+    <text>身份证信息</text>
+    <view class="img_box">
+      <view>
+        <image src='{{idcardFrontImg}}' mode='aspectFit'></image>
+      </view>
+      <view>
+        <image src='{{idcardBackImg}}' mode='aspectFit'></image>
+      </view>
+    </view>
+  </view>
+  <view class="card_info">
+    <text>驾驶证信息</text>
+    <view class="img_box">
+      <view>
+        <image src='{{drivingLicenseFirstImg}}' mode='aspectFit'></image>
+      </view>
+      <view>
+        <image src='{{drivingLicenseSecondImg}}' mode='aspectFit'></image>
+      </view>
+    </view>
+  </view>
+</view>

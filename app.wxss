@@ -59,7 +59,8 @@ page{
 .search image{
   width: 31rpx;
   height: 31rpx;
-  margin-right:20rpx;
+  /* margin-right:20rpx; */
+  padding: 20rpx;
 }
 .search input{
   flex: 1;
@@ -93,14 +94,17 @@ page{
 .car_list .car_box .name{
   color: #333;
   font-size: 24rpx;
+  display: flex;
+  align-items: center;
 }
 .car_list .car_box .name text{
   font-size: 32rpx;
-  margin: 0 20rpx;
+  margin-left: 20rpx;
 }
 .car_list .car_box .name image{
   width: 26rpx;
   height: 28rpx;
+  margin-left: 20rpx;
 }
 .car_list .car_box .size{
   font-size: 24rpx;

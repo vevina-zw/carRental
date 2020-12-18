@@ -7,5 +7,20 @@ page{
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+.container >image{
+  width: 585rpx;
+  height: 430rpx;
+  margin-top: 24rpx;
+}
+.btn{
+  width: 688rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  background-color: #47AB2F;
+  margin-top: 190rpx;
+}
+.bind_btn{
+  background-color: #1F4BA8;
 }

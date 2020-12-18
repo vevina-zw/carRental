@@ -13,3 +13,7 @@
   background-color: #DDD;
   margin: 0 55rpx;
 }
+.firstDay_picker_box .picker{
+  width: 500rpx;
+  border: none;
+}

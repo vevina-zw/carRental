@@ -76,11 +76,16 @@ Page({
     })
   },
 
-  goSearch: function(){
+  goSearch: function(e){
     let searchValue = this.data.searchValue;
+    let brand = e.currentTarget.dataset.brand ? e.currentTarget.dataset.brand: null;
+    
     wx.switchTab({
-      url: `/pages/search/searchResult/searchResult?searchValue=${searchValue}`,
+      // url: `/pages/search/searchResult/searchResult?searchValue=${searchValue}&brand=${brand}`,
+      url: '/pages/search/searchResult/searchResult',//wx.switchTab不能传参，放在globalData里
     })
+    app.globalData.searchValue = searchValue;
+    app.globalData.brand = brand;
   },
 
   getHotBrand: function(){

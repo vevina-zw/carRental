@@ -54,7 +54,11 @@ page{
   font-size: 24rpx;
   color: #333;
 }
-.search_condition_panel .content >view:first-child{
+/* .search_condition_panel .content >view:first-child{
+  color: #1F4BA8;
+  border-top: none;
+} */
+.search_condition_panel .content >view.cur{
   color: #1F4BA8;
   border-top: none;
 }
@@ -64,6 +68,10 @@ page{
   line-height: 103rpx;
   margin: 0 auto;
   font-size: 24rpx;
+  /* color: #1F4BA8; */
+}
+.search_condition_panel .rent_content >view.cur,
+.search_condition_panel .rent_content >view text.cur{
   color: #1F4BA8;
 }
 .search_condition_panel .rent_content .text_box{

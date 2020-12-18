@@ -8,6 +8,7 @@
     "pages/my/authentication/identity/identity",
     "pages/my/authentication/driver/driver",
     "pages/my/authentication/result/result",
+    "pages/my/authentication/information/information",
     "pages/search/search",
     "pages/search/searchResult/searchResult",
     "pages/car/carDetail/carDetail",

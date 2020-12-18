@@ -22,15 +22,24 @@
   <view class="input_box">
     <view>
       <label>证件号</label>
-      <input />
+      <input bindinput="getLicenseNo" />
     </view>
     <view>
       <label>初次领证时间</label>
-      <input />
+      <picker mode="date" value="{{firstDay}}" bindchange="bindFirstDayChange">
+        <view class="datePicker_box firstDay_picker_box">
+          <view class="picker">
+            <text class="label" wx:if="{{!firstDay}}">请选择时间</text>
+            {{firstDay}}
+            <image src="../../../../image/car/date_picker_icon.png"></image>
+          </view>
+        </view>
+      </picker>
+      <!-- <input /> -->
     </view>
     <view>
       <label>准驾类型</label>
-      <input />
+      <input bindinput="getLicenseType" />
     </view>
     <view style="flex-direction: column;align-items: flex-start;justify-content: space-around; border-bottom: none;">
       <label>有效期</label>
@@ -53,5 +62,8 @@
       </view>
     </view>
   </view>
-  <view class="btn">确认提交</view>
+  <view class="btn" bindtap="addDriver">确认提交</view>
+
+  <!-- 自定义弹窗组件 -->
+  <toast id='toast'></toast>
 </view>

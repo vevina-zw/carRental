@@ -105,11 +105,20 @@ page{
 .tab_content .time_box{
   font-size: 28rpx;
   color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tab_content .time_box text{
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 5rpx;
 }
 .tab_content .time_through{
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 30rpx;
 }
 .tab_content .time_through text{
   font-size: 24rpx;
@@ -121,16 +130,22 @@ page{
 }
 
 .tab_content .order_address{
+  font-size: 26rpx;
+  padding: 28rpx 30rpx;
+  display: block;
+}
+.tab_content .order_address >view{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 26rpx;
-  padding: 38rpx 30rpx;
+  padding: 10rpx 0;
 }
 .tab_content .order_address .left{
   color: #333;
   display: flex;
   align-items: center;
+  width: 140rpx;
+  flex-shrink: 0;
 }
 .tab_content .order_address .right{
   color: #999;
@@ -150,4 +165,11 @@ page{
   height: 47rpx;
   line-height: 47rpx;
   font-size: 22rpx;
+}
+.load_warn{
+  text-align: center;
+  color: #666;
+  line-height: 110rpx;
+  font-size: 26rpx;
+  margin-top: 200rpx;
 }

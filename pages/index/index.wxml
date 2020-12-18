@@ -27,7 +27,7 @@
 
     <!-- 分类 -->
     <view class="sort" wx-if="{{brandData.length > 0}}">
-      <view wx:for="{{brandData}}" wx:key="index">
+      <view wx:for="{{brandData}}" wx:key="index" bindtap="goSearch" data-brand="{{item.brandName}}">
         <image mode="aspectFit" src="{{item.brandIcon}}"></image>
         <text>{{item.brandName}}</text>
       </view>
@@ -41,19 +41,21 @@
       热门推荐
     </view>
     <view class="content">
-      <view class="car_list" bindtap="goToCarDetail">
-        <image class="car_img" src="../../image/index/sort_Mercedes.png"></image>
+      <view class="car_list" wx:for="{{carLists}}" wx:key="index"
+      bindtap="goToCarDetail" data-code="{{item.carCode}}">
+        <image class="car_img" src="{{item.carFrontPic}}"></image>
         <view class="car_box">
           <view>
             <view class="name">
-              奥迪<text>A4L 2.0T</text>
-              <image src="../../image/common/label_icon1.png"></image>
+              <!-- {{item.brand}}<text> {{item.brandSub}} {{item.displacement}}T </text> -->
+              {{item.title}}
+              <image wx:if="{{item.ownerFlag == 'YES'}}" src="../../image/common/label_icon1.png"></image>
             </view>
-            <view class="size">浙A****01 | 日均限200km</view>
+            <view class="size">{{item.licenseNo}} | 日均限{{item.limitMile}}km</view>
           </view>
           <view class="price">
-            <view class="discount"><text>￥348</text>/天</view>
-            <view class="cost">￥500/天</view>
+            <view class="discount"><text>￥{{item.discountPrice}}</text>/天</view>
+            <view class="cost">￥{{item.normalPrice}}/天</view>
           </view>
         </view>
       </view>
@@ -62,18 +64,4 @@
 
     <!-- 自定义弹窗组件 -->
     <toast id='toast'></toast>
-
-
-
-
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
 </view>

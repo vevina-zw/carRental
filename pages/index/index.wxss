@@ -30,7 +30,7 @@ page{
 .search image{
   width: 19rpx;
   height: 19rpx;
-  margin-right:20rpx;
+  /* margin-right:20rpx; */
 }
 
 swiper{
