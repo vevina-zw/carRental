@@ -77,7 +77,7 @@
       <text class="cross_line"></text>
       <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
         <view class="picker">
-          <text class="label"  wx:if="{{!dateTime}}">结束时间</text>
+          <text class="label" wx:if="{{!dateTime1}}">结束时间</text>
           {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
           <image src="../../../image/car/date_picker_icon.png"></image>
         </view>

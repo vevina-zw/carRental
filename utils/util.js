@@ -16,7 +16,9 @@ const formatNumber = n => {
 
 // 日期转化为时间戳
 const formatTimeStamp = date =>{
-  return new Date(date).getTime();
+  // ios兼容：年-月-日 需转为 年/月/日
+  let dateT = date.replace(/-/g,'/');
+  return new Date(dateT).getTime();
 }
 
 //时间戳转化为日期 年-月-日
@@ -53,7 +55,10 @@ const formatDateDifference = (sDate1, sDate2) => {    //sDate1和sDate2是2006-1
   iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
   return iDays
 };
-const formatDateTimeDifference = (date1, date2) => {    //sDate1和sDate2是2006-12-18 12:40格式  
+const formatDateTimeDifference = (sDate1, sDate2) => {    //sDate1和sDate2是2006-12-18 12:40格式  
+  // ios兼容：年-月-日 时:分 需转为 年/月/日 时:分
+  let date1 = sDate1.indexOf('T') == -1 ? sDate1.replace(/-/g,'/') : sDate1;
+  let date2 = sDate2.indexOf('T') == -1 ? sDate2.replace(/-/g,'/') : sDate2;
   var date3 = new Date(date2).getTime() - new Date(date1).getTime();   //时间差的毫秒数    
 //计算出相差天数
   var days=Math.floor(date3/(24*3600*1000))
