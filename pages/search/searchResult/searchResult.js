@@ -20,6 +20,7 @@ Page({
     searchValue: '',//搜索关键字
     queryData:{
       "brand": "",
+      "brandType": "",//首页车型搜索
       "hot_flag": 0,
       "pageNo": 1,
       "pageSize": 10,
@@ -65,6 +66,7 @@ Page({
     let queryData = this.data.queryData;
     queryData.brand = app.globalData.brand || null;
     queryData.searchStr = app.globalData.searchValue || null;
+    queryData.brandType = app.globalData.brandType || null;
     let searchValue = app.globalData.searchValue || null;
     this.setData({queryData,searchValue})
     this.getCarListFunc();
@@ -76,6 +78,7 @@ Page({
   onHide: function () {
     app.globalData.searchValue = '';
     app.globalData.brand = '';
+    app.globalData.brandType = '';
   },
 
   /**
@@ -164,7 +167,6 @@ Page({
       price_high = null;
       price_low = null;
     }else{
-      debugger
       price_high = e.currentTarget.dataset.hprice!=undefined ? Number(e.currentTarget.dataset.hprice) : this.data.queryData.price_high;
       price_low = e.currentTarget.dataset.lprice!=undefined ? Number(e.currentTarget.dataset.lprice) : this.data.queryData.price_low;
     }
@@ -173,10 +175,11 @@ Page({
     // let price_high = e.currentTarget.dataset.hprice!=undefined ? Number(e.currentTarget.dataset.hprice) : this.data.queryData.price_high;
     // let price_low = e.currentTarget.dataset.lprice!=undefined ? Number(e.currentTarget.dataset.lprice) : this.data.queryData.price_low;
     let searchStr = this.data.searchValue;
+    let brandType = this.data.queryData.brandType;
     let hot_flag = 0;
     let pageNo = 1;
     let pageSize = 10;
-    let queryData = {price_order,brand,price_high,price_low,searchStr,hot_flag,pageNo,pageSize}
+    let queryData = {brandType,price_order,brand,price_high,price_low,searchStr,hot_flag,pageNo,pageSize}
     debugger
     this.setData({queryData,showConditionPanel:false})
     this.getCarListFunc();

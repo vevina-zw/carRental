@@ -54,8 +54,8 @@ swiper{
   justify-content: center;
 }
 .sort >view image{
-  max-width: 52rpx;
-  max-height: 52rpx;
+  max-width: 86rpx;
+  max-height: 35rpx;
 }
 .sort >view text{
   color: #999;
