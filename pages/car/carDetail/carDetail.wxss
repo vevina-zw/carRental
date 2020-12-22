@@ -33,9 +33,16 @@ swiper{
 .car_basic .price .discount{
   color: #E61E1E;
   font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .car_basic .price .discount text{
   font-size: 40rpx;
+}
+.car_basic .price .discount text.grey{
+  color: #999;
+  font-size: 26rpx;
 }
 .car_basic .price .cost{
   color:#A9A9A9;

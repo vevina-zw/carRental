@@ -32,6 +32,8 @@ Page({
     basicPrice: 0,//基础服务费
     rentPrice: 0,//总租金 每天租金*租用天数
     totalPrice: 0,//租车费用总计，不含押金
+    workDay:0,//租用天数-工作日
+    vaDay:0,//租用天数-节假日
     token: "",
   },
 
@@ -180,7 +182,9 @@ Page({
           let sendPrice= res.data.data.sendPrice;//送车费用
           let getPrice= res.data.data.getPrice;//取车费用
           let basicRatio = res.data.data.jiChu;//基础服务费
-          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio})
+          let workDay = res.data.data.workDay;//租用天数-工作日
+          let vaDay = res.data.data.vaDay;//租用天数-节假日
+          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio,workDay,vaDay})
           _this.calcOnRentPrice();
           _this.calcPrice()
         }else{
@@ -224,8 +228,12 @@ Page({
   },
   calcOnRentPrice: function(){
     let discountPrice = this.data.carInfo.discountPrice;
-    let differenceDay = this.data.differenceDay;
-    let rentPrice = Number(discountPrice) * Number(differenceDay);
+    let holidayPrice = this.data.carInfo.holidayPrice;
+    // let differenceDay = this.data.differenceDay;
+    let workDay = this.data.workDay;
+    let vaDay = this.data.vaDay;
+    // let rentPrice = Number(discountPrice) * Number(differenceDay);
+    let rentPrice = Number(discountPrice) * Number(workDay) + Number(holidayPrice) * Number(vaDay);
 
     let basicRatio = this.data.basicRatio;
     let basicPrice = Number(rentPrice) * Number(basicRatio);
