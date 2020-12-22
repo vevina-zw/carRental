@@ -62,7 +62,8 @@ Page({
       // rentStartTime: options.rentStartTime,
       // rentEndTime: options.rentEndTime,
       // differenceDay: formatDateDifference(options.rentStartTime,options.rentEndTime) +1,
-      differenceDay: formatDateTimeDifference(beginTime,endTime),
+      //租车天数不用前端计算，用checkTime_url接口有返回字段：工作日租用天数workDay + 节假日租用vaDay↓
+      // differenceDay: formatDateTimeDifference(beginTime,endTime),
       carCode: options.carCode
     })
 
@@ -184,7 +185,8 @@ Page({
           let basicRatio = res.data.data.jiChu;//基础服务费
           let workDay = res.data.data.workDay;//租用天数-工作日
           let vaDay = res.data.data.vaDay;//租用天数-节假日
-          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio,workDay,vaDay})
+          let differenceDay = Number(workDay) + Number(vaDay)
+          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio,workDay,vaDay,differenceDay})
           _this.calcOnRentPrice();
           _this.calcPrice()
         }else{

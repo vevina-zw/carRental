@@ -95,11 +95,11 @@
     </view>
     <view>
       <view>基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
-      <view><text>{{orderInfo.rentPrice}}元 X {{orderInfo.jiChu}}</text>{{orderInfo.basicPrice}}元</view>
+      <view><text>{{orderInfo.rentPrice}}元 X {{orderInfo.jiChu}}</text>{{orderInfo.basicSerivceFee}}元</view>
     </view>
     <view>
       <view>租车费用总计</view>
-      <view>{{orderInfo.totalPrice}}元</view>
+      <view>{{orderInfo.price}}元</view>
     </view>
   </view>
   <!-- 押金 -->

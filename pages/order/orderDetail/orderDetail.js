@@ -101,17 +101,19 @@ Page({
           // orderInfo.differenceDay = formatDateDifference(orderInfo.startTime,orderInfo.endTime) +1;//租车天数
           // orderInfo.startTime = formatDate(orderInfo.startTime);
           // orderInfo.endTime = formatDate(orderInfo.endTime);
-          orderInfo.differenceDay = formatDateTimeDifference(orderInfo.startTime,orderInfo.endTime);//租车天数
+          //租车天数不用前端计算，用接口有返回字段：工作日租用天数workDay + 节假日租用vaDay↓
+          // orderInfo.differenceDay = formatDateTimeDifference(orderInfo.startTime,orderInfo.endTime);//租车天数
+          orderInfo.differenceDay = Number(orderInfo.workDay) + Number(orderInfo.vaDay);
           orderInfo.startDay = formatDate(orderInfo.startTime);
           orderInfo.endDay = formatDate(orderInfo.endTime);
           orderInfo.startTime = formatTime1(orderInfo.startTime);
           orderInfo.endTime = formatTime1(orderInfo.endTime);
           // orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.differenceDay);//总租金 每天租金*租用天数
           orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.workDay) + Number(orderInfo.carInfo.holidayPrice) * Number(orderInfo.vaDay);//总租金 工作日租金*工作日租用天数 + 节假日租金*节假日租用天数
-          orderInfo.basicPrice = (Number(orderInfo.rentPrice) * Number(orderInfo.jiChu)).toFixed(2);//基础服务费 车辆租金*基础服务费率
           orderInfo.onHomePrice = Number(orderInfo.sendPrice) + Number(orderInfo.getPrice);//上门取送费 sendPrice/getPrice/sendPrice+getPrice
-          // orderInfo.totalPrice = Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice);//租车费用总计，不含押金
-          orderInfo.totalPrice = (Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice)+ Number(orderInfo.youxiangFee) + Number(orderInfo.basicPrice)).toFixed(2);//租车费用总计，不含押金
+          // 不用前端计算，接口有返回字段：基础服务费basicSerivceFee、租车费用总计price↓
+          //orderInfo.basicPrice = (Number(orderInfo.rentPrice) * Number(orderInfo.jiChu)).toFixed(2);//基础服务费 车辆租金*基础服务费率
+          //orderInfo.totalPrice = (Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice)+ Number(orderInfo.youxiangFee) + Number(orderInfo.basicPrice)).toFixed(2);//租车费用总计，不含押金
 
           let orderStatus = [
             {class: 'after',icon: '../../../image/order/order_status_icon1.png',name:'客服确认'},
