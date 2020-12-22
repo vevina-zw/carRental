@@ -33,9 +33,16 @@ swiper{
 .car_basic .price .discount{
   color: #E61E1E;
   font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .car_basic .price .discount text{
   font-size: 40rpx;
+}
+.car_basic .price .discount text.grey{
+  color: #999;
+  font-size: 26rpx;
 }
 .car_basic .price .cost{
   color:#A9A9A9;
@@ -117,13 +124,24 @@ swiper{
 
 .container{
   position: relative;
-  margin-bottom: 165rpx;
+  padding-bottom: 165rpx;
 }
-.book_handle{
+/* .book_handle{
   height: 165rpx;
   position: fixed;
   bottom: 0;
   left: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.container >view.book_handle{
+  width: 750rpx;
+  height: 165rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

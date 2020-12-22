@@ -110,7 +110,7 @@
 
 .container{
   position: relative;
-  margin-bottom: 96rpx;
+  padding-bottom: 96rpx;
 }
 .order_handle{
   width: 750rpx;

@@ -27,7 +27,7 @@
 
     <!-- 分类 -->
     <view class="sort" wx-if="{{brandData.length > 0}}">
-      <view wx:for="{{brandData}}" wx:key="index" bindtap="goSearch" data-brand="{{item.brandName}}">
+      <view wx:for="{{brandData}}" wx:key="index" bindtap="goSearch" data-brand="{{item.brandCode}}">
         <image mode="aspectFit" src="{{item.brandIcon}}"></image>
         <text>{{item.brandName}}</text>
       </view>

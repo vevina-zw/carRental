@@ -1,4 +1,5 @@
 <!--pages/car/carDetail/carDetail.wxml-->
+<import src="../../../wxParse/wxParse.wxml"/>
 <view class="container">
   <!-- banner -->
   <view class="car_banner" wx:if="{{bannerData.length>0}}">
@@ -23,7 +24,10 @@
   <view class="car_basic">
     <view class="price">
       <view class="cost">￥{{carInfo.normalPrice}}/天</view>
-      <view class="discount">￥<text>{{carInfo.discountPrice}}</text>/天</view>
+      <view class="discount">
+        <view><text class="grey">日常优惠价：</text>￥<text>{{carInfo.discountPrice}}</text>/天</view>
+        <view><text class="grey">节假日租金：</text>￥<text>{{carInfo.discountPrice}}</text>/天</view>
+      </view>
     </view>
     <view class="model">
       <!-- {{carInfo.brand}} {{carInfo.brandSub}} {{carInfo.displacement}}T  -->
@@ -105,6 +109,15 @@
         {{item.name}}
       </view>
     </view>
+  </view>
+
+  <!-- 车辆介绍 -->
+  <view>
+    <view class="title_bar">
+      <text></text>
+      车辆介绍
+    </view>
+    <template is="wxParse" data="{{wxParseData:context.nodes}}"/>
   </view>
   
 

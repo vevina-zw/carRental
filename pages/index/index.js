@@ -81,7 +81,7 @@ Page({
       // url: `/pages/search/searchResult/searchResult?searchValue=$brand=${brand}`,
       url: '/pages/search/searchResult/searchResult',//wx.switchTab不能传参，放在globalData里
     })
-    app.globalData.brand = brand;
+    app.globalData.brandType = brand;
   },
 
   getIndexBanner: function(){

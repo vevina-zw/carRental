@@ -71,7 +71,11 @@
   <view class="price_detail">
     <view>
       <view>车辆租金</view>
-      <view><text>{{carInfo.discountPrice}}元 X {{differenceDay}}天</text>{{rentPrice}}元</view>
+      <view>
+        <text wx:if="{{workDay > 0}}">{{carInfo.discountPrice}}元 X {{workDay}}天</text>
+        <text wx:if="{{vaDay > 0}}">{{carInfo.holidayPrice}}元 X {{vaDay}}天</text>
+        {{rentPrice}}元
+      </view>
     </view>
     <view wx:if="{{onHomeSwitch}}">
       <view>上门取送费</view>

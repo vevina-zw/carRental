@@ -32,6 +32,8 @@ Page({
     basicPrice: 0,//基础服务费
     rentPrice: 0,//总租金 每天租金*租用天数
     totalPrice: 0,//租车费用总计，不含押金
+    workDay:0,//租用天数-工作日
+    vaDay:0,//租用天数-节假日
     token: "",
   },
 
@@ -60,7 +62,8 @@ Page({
       // rentStartTime: options.rentStartTime,
       // rentEndTime: options.rentEndTime,
       // differenceDay: formatDateDifference(options.rentStartTime,options.rentEndTime) +1,
-      differenceDay: formatDateTimeDifference(beginTime,endTime),
+      //租车天数不用前端计算，用checkTime_url接口有返回字段：工作日租用天数workDay + 节假日租用vaDay↓
+      // differenceDay: formatDateTimeDifference(beginTime,endTime),
       carCode: options.carCode
     })
 
@@ -180,7 +183,10 @@ Page({
           let sendPrice= res.data.data.sendPrice;//送车费用
           let getPrice= res.data.data.getPrice;//取车费用
           let basicRatio = res.data.data.jiChu;//基础服务费
-          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio})
+          let workDay = res.data.data.workDay;//租用天数-工作日
+          let vaDay = res.data.data.vaDay;//租用天数-节假日
+          let differenceDay = Number(workDay) + Number(vaDay)
+          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio,workDay,vaDay,differenceDay})
           _this.calcOnRentPrice();
           _this.calcPrice()
         }else{
@@ -218,17 +224,21 @@ Page({
     let youxiangFee = _this.data.vipServeSwitch ? _this.data.carInfo.youxiangFee : 0;//优享服务费
     let basicPrice = _this.data.basicPrice;//基础服务费
 
-    let totalPrice = Number(onHomePrice) + Number(rentPrice) + Number(youxiangFee) + Number(basicPrice);
+    let totalPrice = (Number(onHomePrice) + Number(rentPrice) + Number(youxiangFee) + Number(basicPrice)).toFixed(2);
 
     this.setData({onHomePrice,onHomeSwitch,totalPrice})
   },
   calcOnRentPrice: function(){
     let discountPrice = this.data.carInfo.discountPrice;
-    let differenceDay = this.data.differenceDay;
-    let rentPrice = Number(discountPrice) * Number(differenceDay);
+    let holidayPrice = this.data.carInfo.holidayPrice;
+    // let differenceDay = this.data.differenceDay;
+    let workDay = this.data.workDay;
+    let vaDay = this.data.vaDay;
+    // let rentPrice = Number(discountPrice) * Number(differenceDay);
+    let rentPrice = Number(discountPrice) * Number(workDay) + Number(holidayPrice) * Number(vaDay);
 
     let basicRatio = this.data.basicRatio;
-    let basicPrice = Number(rentPrice) * Number(basicRatio);
+    let basicPrice = (Number(rentPrice) * Number(basicRatio)).toFixed(2);
 
     this.setData({rentPrice,basicPrice})
   },
