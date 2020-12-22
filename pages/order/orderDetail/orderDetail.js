@@ -106,9 +106,12 @@ Page({
           orderInfo.endDay = formatDate(orderInfo.endTime);
           orderInfo.startTime = formatTime1(orderInfo.startTime);
           orderInfo.endTime = formatTime1(orderInfo.endTime);
-          orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.differenceDay);//总租金 每天租金*租用天数
+          // orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.differenceDay);//总租金 每天租金*租用天数
+          orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.workDay) + Number(orderInfo.carInfo.holidayPrice) * Number(orderInfo.vaDay);//总租金 工作日租金*工作日租用天数 + 节假日租金*节假日租用天数
+          orderInfo.basicPrice = (Number(orderInfo.rentPrice) * Number(orderInfo.jiChu)).toFixed(2);//基础服务费 车辆租金*基础服务费率
           orderInfo.onHomePrice = Number(orderInfo.sendPrice) + Number(orderInfo.getPrice);//上门取送费 sendPrice/getPrice/sendPrice+getPrice
-          orderInfo.totalPrice = Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice);//租车费用总计，不含押金
+          // orderInfo.totalPrice = Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice);//租车费用总计，不含押金
+          orderInfo.totalPrice = (Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice)+ Number(orderInfo.youxiangFee) + Number(orderInfo.basicPrice)).toFixed(2);//租车费用总计，不含押金
 
           let orderStatus = [
             {class: 'after',icon: '../../../image/order/order_status_icon1.png',name:'客服确认'},

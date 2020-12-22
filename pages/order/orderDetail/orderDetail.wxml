@@ -79,11 +79,23 @@
   <view class="price_detail">
     <view>
       <view>车辆租金</view>
-      <view><text>{{orderInfo.carInfo.discountPrice}}元 X {{orderInfo.differenceDay}}</text>{{orderInfo.rentPrice}}元</view>
+      <view>
+        <text wx:if="{{orderInfo.workDay > 0}}">{{orderInfo.carInfo.discountPrice}}元 X {{orderInfo.workDay}}天</text>
+        <text wx:if="{{orderInfo.vaDay > 0}}">{{orderInfo.carInfo.holidayPrice}}元 X {{orderInfo.vaDay}}天</text>
+        {{orderInfo.rentPrice}}元
+      </view>
     </view>
     <view>
       <view>上门取送费</view>
       <view>{{orderInfo.onHomePrice}}元</view>
+    </view>
+    <view wx:if="{{orderInfo.youxiangFee}}">
+      <view>优享服务费<image src="../../../image/common/tips_icon.png"></image></view>
+      <view>{{orderInfo.youxiangFee}}元</view>
+    </view>
+    <view>
+      <view>基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
+      <view><text>{{orderInfo.rentPrice}}元 X {{orderInfo.jiChu}}</text>{{orderInfo.basicPrice}}元</view>
     </view>
     <view>
       <view>租车费用总计</view>

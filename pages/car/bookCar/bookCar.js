@@ -222,7 +222,7 @@ Page({
     let youxiangFee = _this.data.vipServeSwitch ? _this.data.carInfo.youxiangFee : 0;//优享服务费
     let basicPrice = _this.data.basicPrice;//基础服务费
 
-    let totalPrice = Number(onHomePrice) + Number(rentPrice) + Number(youxiangFee) + Number(basicPrice);
+    let totalPrice = (Number(onHomePrice) + Number(rentPrice) + Number(youxiangFee) + Number(basicPrice)).toFixed(2);
 
     this.setData({onHomePrice,onHomeSwitch,totalPrice})
   },
@@ -236,7 +236,7 @@ Page({
     let rentPrice = Number(discountPrice) * Number(workDay) + Number(holidayPrice) * Number(vaDay);
 
     let basicRatio = this.data.basicRatio;
-    let basicPrice = Number(rentPrice) * Number(basicRatio);
+    let basicPrice = (Number(rentPrice) * Number(basicRatio)).toFixed(2);
 
     this.setData({rentPrice,basicPrice})
   },
