@@ -124,13 +124,24 @@ swiper{
 
 .container{
   position: relative;
-  margin-bottom: 165rpx;
+  padding-bottom: 165rpx;
 }
-.book_handle{
+/* .book_handle{
   height: 165rpx;
   position: fixed;
   bottom: 0;
   left: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.container >view.book_handle{
+  width: 750rpx;
+  height: 165rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

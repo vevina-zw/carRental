@@ -1,4 +1,5 @@
 <!--pages/car/carDetail/carDetail.wxml-->
+<import src="../../../wxParse/wxParse.wxml"/>
 <view class="container">
   <!-- banner -->
   <view class="car_banner" wx:if="{{bannerData.length>0}}">
@@ -108,6 +109,15 @@
         {{item.name}}
       </view>
     </view>
+  </view>
+
+  <!-- 车辆介绍 -->
+  <view>
+    <view class="title_bar">
+      <text></text>
+      车辆介绍
+    </view>
+    <template is="wxParse" data="{{wxParseData:context.nodes}}"/>
   </view>
   
 

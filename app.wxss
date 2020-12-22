@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import "utils/fontawesome.wxss";
+@import "wxParse/wxParse.wxss";
 page{
   color: #333;
 }
