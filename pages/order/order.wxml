@@ -26,7 +26,7 @@
           <view>
             <view class="name">
               <!-- {{item.carInfo.brand}}<text> {{item.carInfo.brandSub}} {{item.carInfo.displacement}}T</text> -->
-              {{item.title}}
+              {{item.carInfo.title}}
               <image wx:if="{{item.carInfo.ownerFlag == 'YES'}}" src="../../image/common/label_icon3.png"></image>
             </view>
             <view class="size">{{item.carInfo.licenseNo}}</view>

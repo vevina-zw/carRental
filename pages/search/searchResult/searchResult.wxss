@@ -6,10 +6,10 @@ page{
   position: relative;
 }
 .fixed_layer{
-  position: fixed;
+  /* position: fixed;
   z-index: 999;
   top: 0;
-  left: 0;
+  left: 0; */
 }
 .search_condition{
   width: 690rpx;
@@ -92,17 +92,11 @@ page{
 }
 
 .scroll_layer{
-  margin-top: 208rpx;
+  /* margin-top: 208rpx; */
 }
 .car_list{
   width: 690rpx;
   padding: 0 30rpx;
   background-color: #fff;
   margin-top: 11rpx;
-}
-.load_warn{
-  text-align: center;
-  color: #666;
-  line-height: 110rpx;
-  font-size: 26rpx;
 }

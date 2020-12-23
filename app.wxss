@@ -178,6 +178,13 @@ page{
   height: 8rpx;
 }
 
+.load_warn{
+  text-align: center;
+  color: #666;
+  line-height: 110rpx;
+  font-size: 26rpx;
+}
+
 
 
 

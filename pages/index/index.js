@@ -20,29 +20,31 @@ Page({
     indicatorActiveColor: "#FFF",//指示点颜色
 
     brandData: [
-      {
-        "brandIcon": "../../image/index/sort_BMW.png",
-        "brandName": "宝马",
-      },
-      {
-        "brandIcon": "../../image/index/sort_Audi.png",
-        "brandName": "奥迪",
-      },
-      {
-        "brandIcon": "../../image/index/sort_Mercedes.png",
-        "brandName": "奔驰",
-      },
-      {
-        "brandIcon": "../../image/index/sort_luxury.png",
-        "brandName": "豪华跑车",
-      },
+      // {
+      //   "brandIcon": "../../image/index/sort_BMW.png",
+      //   "brandName": "宝马",
+      // },
+      // {
+      //   "brandIcon": "../../image/index/sort_Audi.png",
+      //   "brandName": "奥迪",
+      // },
+      // {
+      //   "brandIcon": "../../image/index/sort_Mercedes.png",
+      //   "brandName": "奔驰",
+      // },
+      // {
+      //   "brandIcon": "../../image/index/sort_luxury.png",
+      //   "brandName": "豪华跑车",
+      // },
     ],
+    carLists:[],
     queryData:{
       "hot_flag": 1,
       "pageNo": 1,
       "pageSize": 10,
     },
     loading_more: false,
+    warn:'',//正在加载/已全部加载完成/暂无数据...等
   },
   onLoad: function () {
     this.dialog = this.selectComponent("#toast");
@@ -51,18 +53,34 @@ Page({
     this.getCarListFunc();
   },
 
-    /**
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    let _this = this;
+    if (_this.data.loading_more) {
+      return;
+    }
+    let queryData = _this.data.queryData;
+    let pageNo =  1;
+    queryData.pageNo = pageNo;
+    _this.setData({queryData})
+    _this.getCarListFunc();
+  },
+
+  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.loading_more || this.data.warn == '已全部加载完成') {
+    let _this = this;
+    if (_this.data.loading_more || _this.data.warn == '已全部加载完成') {
       return;
     }
-    let queryData = this.data.queryData;
+    let queryData = _this.data.queryData;
     let pageNo =  queryData.pageNo +1;
     queryData.pageNo = pageNo;
-    this.setData({queryData})
-    this.getCarListFunc();
+    _this.setData({queryData})
+    _this.getCarListFunc();
   },
 
   goToSearch: function(){

@@ -22,11 +22,11 @@
   <view class="input_box">
     <view>
       <label>真实姓名</label>
-      <input placeholder="请输入您的真实姓名" bindinput="getName" />
+      <input placeholder="请输入您的真实姓名" bindinput="getName" value="{{name}}" />
     </view>
     <view>
       <label>身份证号</label>
-      <input placeholder="请输入您的身份证号" bindinput="getIdNo" />
+      <input placeholder="请输入您的身份证号" bindinput="getIdNo" value="{{idNo}}" />
     </view>
   </view>
   <view class="btn" bindtap="addRealUser">确认提交</view>
