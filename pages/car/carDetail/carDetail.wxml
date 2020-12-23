@@ -26,7 +26,7 @@
       <view class="cost">￥{{carInfo.normalPrice}}/天</view>
       <view class="discount">
         <view><text class="grey">日常优惠价：</text>￥<text>{{carInfo.discountPrice}}</text>/天</view>
-        <view><text class="grey">节假日租金：</text>￥<text>{{carInfo.discountPrice}}</text>/天</view>
+        <view><text class="grey">节假日租金：</text>￥<text>{{carInfo.holidayPrice}}</text>/天</view>
       </view>
     </view>
     <view class="model">

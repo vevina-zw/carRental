@@ -18,6 +18,7 @@ Page({
     showConditionPanel: false,
     brandData:{},//品牌列表
     searchValue: '',//搜索关键字
+    carLists: [],
     queryData:{
       "brand": "",
       "brandType": "",//首页车型搜索
@@ -42,9 +43,9 @@ Page({
     let _this = this;
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res.screenHeight);
+        console.log(res);
           _this.setData({
-              sv_height: res.screenHeight - 104
+              sv_height: res.windowHeight - 104
           });
       }
     });
@@ -231,24 +232,26 @@ Page({
     })
   },
   refreshCarList: function(){//scroll-view 下拉刷新
-    if (this.data.loading_more) {
+    let _this = this;
+    if (_this.data.loading_more) {
       return;
     }
-    let queryData = this.data.queryData;
+    let queryData = _this.data.queryData;
     let pageNo =  1;
     queryData.pageNo = pageNo;
-    this.setData({queryData})
-    this.getCarListFunc();
+    _this.setData({queryData})
+    _this.getCarListFunc();
   },
   loadMoreCarList: function(){//scroll-view 上拉加载
-    if (this.data.loading_more || this.data.warn == '已全部加载完成') {
+    let _this = this;
+    if (_this.data.loading_more || _this.data.warn == '已全部加载完成') {
       return;
     }
-    let queryData = this.data.queryData;
+    let queryData = _this.data.queryData;
     let pageNo =  queryData.pageNo +1;
     queryData.pageNo = pageNo;
-    this.setData({queryData})
-    this.getCarListFunc();
+    _this.setData({queryData})
+    _this.getCarListFunc();
   },
   goToCarDetail: function(e){
     wx.navigateTo({

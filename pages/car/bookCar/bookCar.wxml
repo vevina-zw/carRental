@@ -4,7 +4,7 @@
     <!-- 车辆信息 -->
     <view class="order_list">
       <view class="list_content order_car">
-        <image class="car_img" src="{{carInfo.detailPic}}"></image>
+        <image class="car_img" src="{{carInfo.carFrontPic}}"></image>
         <view class="car_box">
           <view>
             <view class="name">
@@ -28,7 +28,8 @@
           <view class="address_box">
             <view class="input_box">
               <text>取车</text>
-              <input placeholder="请输入取车地址" bindinput="homeSendAddress"></input>
+              <input wx:if="{{isHomeSend}}" placeholder="请输入取车地址" bindinput="homeSendAddress"></input>
+              <input wx:else disabled value="{{storeAddress}}"></input>
             </view>
             <label class="radio" bindtap="homeSendRadioChange">
               <radio color="#1F4BA8" checked="{{isHomeSend}}"/>送车上门
@@ -37,7 +38,8 @@
           <view class="address_box">
             <view class="input_box">
               <text>还车</text>
-              <input placeholder="请输入还车地址" bindinput="homeTakeAddress"></input>
+              <input wx:if="{{isHomeTake}}" placeholder="请输入还车地址" bindinput="homeTakeAddress"></input>
+              <input wx:else disabled value="{{storeAddress}}"></input>
             </view>
             <label class="radio" bindtap="homeTakeRadioChange">
               <radio color="#1F4BA8" checked="{{isHomeTake}}"/>上门取车

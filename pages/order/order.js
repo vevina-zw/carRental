@@ -173,7 +173,7 @@ Page({
       appId: param.appId,
       timeStamp: param.timeStamp,
       nonceStr: param.nonceStr,
-      package: param.package,
+      package: param.packageValue,
       signType: 'MD5',
       paySign: param.paySign,
       success: function (event) {

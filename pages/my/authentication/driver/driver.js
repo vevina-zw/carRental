@@ -206,7 +206,12 @@ Page({
       },
       success(res){
         if (res.data.result=="100"){//识别通过
-          
+          let no = res.data.data.drivingLicenseNo;//驾驶证 证件号
+          let type = res.data.data.drivingLicenseType;//驾驶证 准驾类型
+          let firstDay = res.data.data.drivingLicenseFirstGetDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");//驾驶证 初次领证时间
+          let licenseStartTime = res.data.data.drivingLicenseValidityDataStart.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");//驾驶证 有效起始时间
+          let licenseEndTime = res.data.data.drivingLicenseValidityDataEnd.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");//驾驶证 有效结束时间
+          _this.setData({no,type,firstDay,licenseStartTime,licenseEndTime})
         }else{//识别不通过
           _this.dialog.showToast(res.data.message+'请重新上传');
           _this.setData({

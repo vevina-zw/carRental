@@ -174,7 +174,9 @@ Page({
       },
       success(res){
         if (res.data.result=="100"){//识别通过
-          
+          let name = res.data.data.userName;//身份证 姓名
+          let idNo = res.data.data.idcardNo;//身份证号
+          _this.setData({name,idNo});
         }else{//识别不通过
           _this.dialog.showToast(res.data.message+'请重新上传');
           _this.setData({
