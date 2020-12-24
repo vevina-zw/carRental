@@ -1,6 +1,8 @@
 // pages/car/bookCar/bookCar.js
 const config = require('../../../config/config');
 const { formatTimeStamp,formatDateDifference,formatDateTimeDifference } = require('../../../utils/util');
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -288,9 +290,12 @@ Page({
           })
         }
         if (res.data.result == "100") {//调用接口返回数据成功
-          wx.switchTab({
+          //意向下单后 跳转到订单列表，渲染意向下单tab
+          wx.switchTab({//wx.switchTab不能传参，放在globalData里
             url: '/pages/order/order',
           })
+          app.globalData.currentTab = 1;
+          app.globalData.status = 'intention';
         }else{
           _this.dialog.showToast(res.data.message);//自定义弹窗组件
         }

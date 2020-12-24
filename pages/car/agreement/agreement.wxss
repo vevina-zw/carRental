@@ -5,6 +5,12 @@
   color: #000;
   align-items: flex-start;
 }
+.title{
+  font-size: 32rpx;
+  font-weight: 500;
+  line-height: 50rpx;
+  text-align: center;
+}
 .h1{
   font-size: 30rpx;
   font-weight: 500;
@@ -22,4 +28,8 @@
 }
 .p_b{
   font-weight: 500;
+}
+.img{
+  max-width: 100%;
+  padding: 5rpx 0;
 }
