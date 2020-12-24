@@ -144,6 +144,11 @@
           "pathName": "pages/my/authentication/information/information",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "协议",
+          "pathName": "pages/car/agreement/agreement",
+          "scene": null
         }
       ]
     }

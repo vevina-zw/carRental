@@ -84,12 +84,14 @@ page{
 }
 .tab_content .car_box .name{
   color: #333;
-  font-size: 24rpx;
+  /* font-size: 24rpx; */
+  font-size: 30rpx;
+  font-weight: 500;
 }
-.tab_content .car_box .name text{
+/* .tab_content .car_box .name text{
   font-size: 32rpx;
   margin: 0 20rpx;
-}
+} */
 .tab_content .car_box .name image{
   width: 26rpx;
   height: 28rpx;

@@ -112,7 +112,7 @@
   </view>
 
   <!-- 车辆介绍 -->
-  <view>
+  <view wx:if="{{context}}">
     <view class="title_bar">
       <text></text>
       车辆介绍

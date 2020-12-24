@@ -68,3 +68,7 @@
 .btn{
   margin: 50rpx 0;
 }
+.load_warn{
+  color: #999;
+  margin-top: 200rpx;
+}
