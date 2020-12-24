@@ -209,19 +209,21 @@ Page({
         wx.showToast({
           title: '支付成功',
           icon: 'success',
-          duration: 2000
+          duration: 1000
         });
         
         //支付成功后 返回到订单列表，渲染进行中tab
         let pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
         let prevPage = pages[ pages.length - 2 ];
         prevPage.setData({// 设置上一页参数
-          currentTab: '3',
+          currentTab: 3,
           status:'payed'
         })
-        wx.navigateBack({
-          delta: 1
-        })
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000);
       },
       fail: function (error) {
         wx.showModal({

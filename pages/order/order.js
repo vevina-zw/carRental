@@ -1,6 +1,8 @@
 // pages/order/order.js
 const config = require('../../config/config');
 const { formatDate,formatDateDifference,formatTime1,formatDateTimeDifference } = require('../../utils/util');
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -38,6 +40,9 @@ Page({
       this.setData({
         token: token
       })
+      let currentTab = app.globalData.currentTab || this.data.currentTab;
+      let status = app.globalData.status || this.data.status;
+      this.setData({currentTab,status});
       this.getOrderList()
     }else{
       wx.navigateTo({
@@ -50,7 +55,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    app.globalData.currentTab = this.data.currentTab;
+    app.globalData.status = this.data.status;
   },
 
   /**
@@ -85,13 +91,13 @@ Page({
       return;
     }
     let status = '';
-    if(e.currentTarget.dataset.idx == '1'){
+    if(e.currentTarget.dataset.idx == 1){
       status = 'intention';
-    }else if(e.currentTarget.dataset.idx == '2'){
+    }else if(e.currentTarget.dataset.idx == 2){
       status = 'wait_pay';
-    }else if(e.currentTarget.dataset.idx == '3'){
+    }else if(e.currentTarget.dataset.idx == 3){
       status = 'payed';
-    }else if(e.currentTarget.dataset.idx == '4'){
+    }else if(e.currentTarget.dataset.idx == 4){
       status = 'success';
     }
     this.setData({
@@ -181,12 +187,12 @@ Page({
         wx.showToast({
           title: '支付成功',
           icon: 'success',
-          duration: 2000
+          duration: 1000
         });
 
         // 支付成功后，渲染进行中tab
         _this.setData({
-          currentTab: '3',
+          currentTab: 3,
           status:'payed'
         })
         _this.getOrderList();

@@ -14,7 +14,7 @@ Page({
       {iconPath:'../../image/my/list_icon2.png', name:'在线客服', type:'button'},
       // {iconPath:'../../image/my/list_icon3.png', name:'意见反馈'},
       {iconPath:'../../image/my/list_icon4.png', name:'联系我们', linkPath:'/pages/my/contactUs/contactUs'},
-      {iconPath:'../../image/my/list_icon5.png', name:'服务条款'},
+      {iconPath:'../../image/my/list_icon5.png', name:'服务条款', linkPath:'/pages/car/agreement/agreement?type=ToS'},
     ],
     token:'',
     phone:'',//手机号
