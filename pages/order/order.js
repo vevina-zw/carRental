@@ -175,6 +175,7 @@ Page({
     })
   },
   wxPay: function(param) {
+    let _this = this;
     wx.requestPayment({
       appId: param.appId,
       timeStamp: param.timeStamp,
