@@ -210,7 +210,9 @@ Page({
           * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
           */
          let context = res.data.context;
+         if(context){
           WxParse.wxParse('context', 'html', context, _this,5);
+         }
           _this.setData({
             carInfo: res.data,
             carConfigInfoData,

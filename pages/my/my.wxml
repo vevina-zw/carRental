@@ -39,6 +39,8 @@
   </view>
   <!-- <view class="btn blue_gradient">退出登录</view> -->
 
+  <view class="load_warn">杭州老铁帮网络科技提供技术支持</view>
+
   <!-- 自定义弹窗组件 -->
   <toast id='toast'></toast>
 </view>

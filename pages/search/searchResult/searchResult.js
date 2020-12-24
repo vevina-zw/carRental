@@ -181,7 +181,6 @@ Page({
     let pageNo = 1;
     let pageSize = 10;
     let queryData = {brandType,price_order,brand,price_high,price_low,searchStr,hot_flag,pageNo,pageSize}
-    debugger
     this.setData({queryData,showConditionPanel:false})
     this.getCarListFunc();
   },

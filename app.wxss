@@ -94,14 +94,16 @@ page{
 }
 .car_list .car_box .name{
   color: #333;
-  font-size: 24rpx;
+  /* font-size: 24rpx; */
+  font-size: 30rpx;
+  font-weight: 500;
   display: flex;
   align-items: center;
 }
-.car_list .car_box .name text{
+/* .car_list .car_box .name text{
   font-size: 32rpx;
   margin-left: 20rpx;
-}
+} */
 .car_list .car_box .name image{
   width: 26rpx;
   height: 28rpx;

@@ -1,0 +1,25 @@
+/* pages/car/agreement/agreement.wxss */
+.container{
+  width: 690rpx;
+  margin: 30rpx auto;
+  color: #000;
+  align-items: flex-start;
+}
+.h1{
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 46rpx;
+  padding: 5rpx 0;
+}
+.p,.p1,.p_b{
+  font-size: 28rpx;
+  line-height: 44rpx;
+  padding: 5rpx 0;
+  color: #000;
+}
+.p1{
+  color: #666;
+}
+.p_b{
+  font-weight: 500;
+}

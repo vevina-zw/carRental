@@ -183,6 +183,13 @@ Page({
           icon: 'success',
           duration: 2000
         });
+
+        // 支付成功后，渲染进行中tab
+        _this.setData({
+          currentTab: '3',
+          status:'payed'
+        })
+        _this.getOrderList();
       },
       fail: function (error) {
         wx.showModal({
@@ -196,6 +203,5 @@ Page({
         console.log("pay complete")
       }
     });
-     
   },
 })

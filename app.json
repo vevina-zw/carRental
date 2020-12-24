@@ -13,6 +13,7 @@
     "pages/search/searchResult/searchResult",
     "pages/car/carDetail/carDetail",
     "pages/car/bookCar/bookCar",
+    "pages/car/agreement/agreement",
     "pages/login/login"
   ],
   "window":{

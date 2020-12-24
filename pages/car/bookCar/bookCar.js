@@ -264,7 +264,6 @@ Page({
       no: _this.data.carCode,
       jiChu: _this.data.vipServeSwitch,//是否选择优享服务
     }
-    debugger
     wx.request({
       method: "GET",
       url: config.addOrder_url,
@@ -299,6 +298,12 @@ Page({
       fail(res) {//连接服务失败
         _this.dialog.showToast(res.errMsg);//自定义弹窗组件
       }
+    })
+  },
+  goToAgreement: function(e){
+    let type = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: `/pages/car/agreement/agreement?type=${type}`,
     })
   }
 })

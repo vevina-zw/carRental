@@ -8,7 +8,8 @@
         <view class="car_box">
           <view>
             <view class="name">
-              {{carInfo.brand}}<text>{{carInfo.brandSub}} {{carInfo.displacement}}T </text>
+              <!-- {{carInfo.brand}}<text>{{carInfo.brandSub}} {{carInfo.displacement}}T </text> -->
+              {{carInfo.title}}
               <image wx:if="{{carInfo.ownerFlag == 'YES'}}" src="../../../image/common/label_icon3.png"></image>
             </view>
             <view class="size">{{carInfo.licenseNo}}</view>
@@ -84,11 +85,11 @@
       <view>{{onHomePrice}}元</view>
     </view>
     <view>
-      <view>优享服务费<image src="../../../image/common/tips_icon.png"></image></view>
+      <view catchtap="goToAgreement" data-type="vipServe">优享服务费<image src="../../../image/common/tips_icon.png"></image></view>
       <view>{{carInfo.youxiangFee}}元<switch color="#1F4BA8" checked="{{vipServeSwitch}}" bindchange="vipServeSwitchChange"/></view>
     </view>
     <view>
-      <view>基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
+      <view catchtap="goToAgreement" data-type="basicServe">基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
       <view><text>{{rentPrice}}元 X {{basicRatio}}</text>{{basicPrice}}元</view>
     </view>
     <view>

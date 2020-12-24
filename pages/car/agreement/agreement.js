@@ -1,22 +1,28 @@
-// pages/my/contactUs/contactUs.js
+// pages/car/agreement/agreement.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    contactWay: [
-      {icon:'../../../image/my/contact_us_icon1.png', content:'17130000603、15355035580（微信同上）'},
-      {icon:'../../../image/my/contact_us_icon2.png', content:'763957786@qq.com（QQ同上）'},
-      {icon:'../../../image/my/contact_us_icon3.png', content:'杭州市西湖区水韵金沙东门'}
-    ]
+    agreementType:'',// 基础服务费basicServe/ 优享服务费vipServe
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let agreementType = options.type;
+    let agreementTitle = '';
+    if(agreementType == 'basicServe'){
+      agreementTitle = '基础服务费'
+    }else if(agreementType == 'vipServe'){
+      agreementTitle = '优享服务费'
+    }
+    this.setData({agreementType})
+    wx.setNavigationBarTitle({
+      title: agreementTitle
+    })
   },
 
   /**
