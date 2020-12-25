@@ -72,7 +72,7 @@ const formatDateTimeDifference = (sDate1, sDate2) => {    //sDate1和sDate2是20
   //计算相差秒数
   var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
   var seconds=Math.round(leave3/1000)
-  console.log(" 相差 "+days+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
+  // console.log(" 相差 "+days+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒")
 
   //本项目租车时长逻辑 不足24小时算一天↓
   let differenDay = days;

@@ -70,7 +70,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getOrderList();
   },
 
   /**
@@ -145,6 +145,9 @@ Page({
       },
       fail(res) {//连接服务失败
         _this.dialog.showToast(res.errMsg);//自定义弹窗组件
+      },
+      complete: function () {
+        wx.stopPullDownRefresh();
       }
     })
   },
