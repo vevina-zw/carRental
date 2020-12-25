@@ -48,6 +48,11 @@ Page({
   },
   onLoad: function () {
     this.dialog = this.selectComponent("#toast");
+  },
+    /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.getIndexBanner();
     this.getIndexBrand();
     this.getCarListFunc();
@@ -66,6 +71,8 @@ Page({
     queryData.pageNo = pageNo;
     _this.setData({queryData})
     _this.getCarListFunc();
+    this.getIndexBanner();
+    this.getIndexBrand();
   },
 
   /**
@@ -194,7 +201,7 @@ Page({
       complete: function () {
         wx.stopPullDownRefresh();
         _this.setData({loading_more:false})
-    }
+      }
     })
   },
 })
