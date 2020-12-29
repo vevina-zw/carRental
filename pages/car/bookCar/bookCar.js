@@ -34,8 +34,8 @@ Page({
     basicPrice: 0,//基础服务费
     rentPrice: 0,//总租金 每天租金*租用天数
     totalPrice: 0,//租车费用总计，不含押金
-    workDay:0,//租用天数-工作日
-    vaDay:0,//租用天数-节假日
+    // workDay:0,//租用天数-工作日
+    // vaDay:0,//租用天数-节假日
     token: "",
   },
 
@@ -64,8 +64,7 @@ Page({
       // rentStartTime: options.rentStartTime,
       // rentEndTime: options.rentEndTime,
       // differenceDay: formatDateDifference(options.rentStartTime,options.rentEndTime) +1,
-      //租车天数不用前端计算，用checkTime_url接口有返回字段：工作日租用天数workDay + 节假日租用vaDay↓
-      // differenceDay: formatDateTimeDifference(beginTime,endTime),
+      differenceDay: formatDateTimeDifference(beginTime,endTime),
       carCode: options.carCode
     })
 
@@ -182,13 +181,15 @@ Page({
         if (res.data.result == "100") {//调用接口返回数据成功，即为该日期内可用
           let carInfo = res.data.data.carInfo;
           let storeAddress = res.data.data.address;//店面地址
-          let sendPrice= res.data.data.sendPrice;//送车费用
-          let getPrice= res.data.data.getPrice;//取车费用
-          let basicRatio = res.data.data.jiChu;//基础服务费
-          let workDay = res.data.data.workDay;//租用天数-工作日
-          let vaDay = res.data.data.vaDay;//租用天数-节假日
-          let differenceDay = Number(workDay) + Number(vaDay)
-          _this.setData({carInfo,storeAddress,sendPrice,getPrice,basicRatio,workDay,vaDay,differenceDay})
+          let sendPrice= res.data.data.sendPrice || 0;//送车费用
+          let getPrice= res.data.data.getPrice || 0;//取车费用
+          let basicRatio = res.data.data.jiChu || 0;//基础服务费
+          // let workDay = res.data.data.workDay;//租用天数-工作日
+          // let vaDay = res.data.data.vaDay;//租用天数-节假日
+          let rentPrice = res.data.data.rentalPrice || 0;//车辆租金(2020.12.25备注：不用前端计算了，直接用接口返回的rentalPrice字段)
+          _this.setData({carInfo,storeAddress,sendPrice,getPrice,rentPrice,basicRatio
+            // ,workDay,vaDay
+          })
           _this.calcOnRentPrice();
           _this.calcPrice()
         }else{
@@ -237,7 +238,8 @@ Page({
     let workDay = this.data.workDay;
     let vaDay = this.data.vaDay;
     // let rentPrice = Number(discountPrice) * Number(differenceDay);
-    let rentPrice = Number(discountPrice) * Number(workDay) + Number(holidayPrice) * Number(vaDay);
+    // let rentPrice = Number(discountPrice) * Number(workDay) + Number(holidayPrice) * Number(vaDay);
+    let rentPrice = this.data.rentPrice;//(2020.12.25备注：不用前端计算了，直接用接口返回的rentalPrice字段)
 
     let basicRatio = this.data.basicRatio;
     let basicPrice = (Number(rentPrice) * Number(basicRatio)).toFixed(2);

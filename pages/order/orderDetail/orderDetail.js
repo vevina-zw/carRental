@@ -101,15 +101,15 @@ Page({
           // orderInfo.differenceDay = formatDateDifference(orderInfo.startTime,orderInfo.endTime) +1;//租车天数
           // orderInfo.startTime = formatDate(orderInfo.startTime);
           // orderInfo.endTime = formatDate(orderInfo.endTime);
-          //租车天数不用前端计算，用接口有返回字段：工作日租用天数workDay + 节假日租用vaDay↓
-          // orderInfo.differenceDay = formatDateTimeDifference(orderInfo.startTime,orderInfo.endTime);//租车天数
-          orderInfo.differenceDay = Number(orderInfo.workDay) + Number(orderInfo.vaDay);
+          orderInfo.differenceDay = formatDateTimeDifference(orderInfo.startTime,orderInfo.endTime);//租车天数
+          // orderInfo.differenceDay = Number(orderInfo.workDay) + Number(orderInfo.vaDay);
           orderInfo.startDay = formatDate(orderInfo.startTime);
           orderInfo.endDay = formatDate(orderInfo.endTime);
           orderInfo.startTime = formatTime1(orderInfo.startTime);
           orderInfo.endTime = formatTime1(orderInfo.endTime);
           // orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.differenceDay);//总租金 每天租金*租用天数
-          orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.workDay) + Number(orderInfo.carInfo.holidayPrice) * Number(orderInfo.vaDay);//总租金 工作日租金*工作日租用天数 + 节假日租金*节假日租用天数
+          // orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.workDay) + Number(orderInfo.carInfo.holidayPrice) * Number(orderInfo.vaDay);//总租金 工作日租金*工作日租用天数 + 节假日租金*节假日租用天数
+          orderInfo.rentPrice = orderInfo.rentalPrice || 0;//车辆租金(2020.12.25备注：不用前端计算了，直接用接口返回的rentalPrice字段)
           orderInfo.onHomePrice = Number(orderInfo.sendPrice) + Number(orderInfo.getPrice);//上门取送费 sendPrice/getPrice/sendPrice+getPrice
           // 不用前端计算，接口有返回字段：基础服务费basicSerivceFee、租车费用总计price↓
           //orderInfo.basicPrice = (Number(orderInfo.rentPrice) * Number(orderInfo.jiChu)).toFixed(2);//基础服务费 车辆租金*基础服务费率

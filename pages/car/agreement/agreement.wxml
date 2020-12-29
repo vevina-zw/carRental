@@ -46,6 +46,14 @@
     <view class="p_b">优享服务不包含轮胎轮毂的单独受损。</view>
   </block>
 
+  <!-- 车辆租金 -->
+  <block wx:if="{{agreementType=='rentPrice'}}">
+    <view class="p">租金=日均价*租期</view>
+    <view class="h1">日均价：</view>
+    <view class="p">订单内的每日租期占一天总时长24小时的占比乘以当日的出租价格，得到日均价。</view>
+    <view class="p">比如，某订单从1号15点至2号11点10分（20小时10分），1号的租金为100元/天，2号的租金为200/天。则租金=(9*60/24*60)*100+((11*60+10)/24*60)*200=156元</view>
+  </block>
+
   <!-- 服务条款 -->
   <block wx:if="{{agreementType=='ToS'}}">
     <view class="title">《杭州杭兴汽车长短租平台服务规则》</view>

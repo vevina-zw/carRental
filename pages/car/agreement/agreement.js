@@ -18,6 +18,8 @@ Page({
       agreementTitle = '基础服务费'
     }else if(agreementType == 'vipServe'){
       agreementTitle = '优享服务费'
+    }else if(agreementType == 'rentPrice'){
+      agreementTitle = '车辆租金'
     }else if(agreementType == 'ToS'){
       agreementTitle = '服务条款'
     }

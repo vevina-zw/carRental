@@ -80,8 +80,8 @@
     <view>
       <view>车辆租金</view>
       <view>
-        <text wx:if="{{orderInfo.workDay > 0}}">{{orderInfo.carInfo.discountPrice}}元 X {{orderInfo.workDay}}天</text>
-        <text wx:if="{{orderInfo.vaDay > 0}}">{{orderInfo.carInfo.holidayPrice}}元 X {{orderInfo.vaDay}}天</text>
+        <!-- <text wx:if="{{orderInfo.workDay > 0}}">{{orderInfo.carInfo.discountPrice}}元 X {{orderInfo.workDay}}天</text>
+        <text wx:if="{{orderInfo.vaDay > 0}}">{{orderInfo.carInfo.holidayPrice}}元 X {{orderInfo.vaDay}}天</text> -->
         {{orderInfo.rentPrice}}元
       </view>
     </view>

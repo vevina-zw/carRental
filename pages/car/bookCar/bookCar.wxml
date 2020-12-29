@@ -73,10 +73,10 @@
   <!-- 租金 -->
   <view class="price_detail">
     <view>
-      <view>车辆租金</view>
+      <view catchtap="goToAgreement" data-type="rentPrice">车辆租金<image src="../../../image/common/tips_icon.png"></image></view>
       <view>
-        <text wx:if="{{workDay > 0}}">{{carInfo.discountPrice}}元 X {{workDay}}天</text>
-        <text wx:if="{{vaDay > 0}}">{{carInfo.holidayPrice}}元 X {{vaDay}}天</text>
+        <!-- <text wx:if="{{workDay > 0}}">{{carInfo.discountPrice}}元 X {{workDay}}天</text>
+        <text wx:if="{{vaDay > 0}}">{{carInfo.holidayPrice}}元 X {{vaDay}}天</text> -->
         {{rentPrice}}元
       </view>
     </view>
