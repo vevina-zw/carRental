@@ -58,6 +58,12 @@ swiper{
   height: 32rpx;
   margin-left: 21rpx;
 }
+.car_basic .model text{
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #E61E1E;
+  margin-left: 25rpx;
+}
 .car_basic .size{
   font-size: 24rpx;
   color: #999;

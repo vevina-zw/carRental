@@ -187,7 +187,8 @@ Page({
           // let workDay = res.data.data.workDay;//租用天数-工作日
           // let vaDay = res.data.data.vaDay;//租用天数-节假日
           let rentPrice = res.data.data.rentalPrice || 0;//车辆租金(2020.12.25备注：不用前端计算了，直接用接口返回的rentalPrice字段)
-          _this.setData({carInfo,storeAddress,sendPrice,getPrice,rentPrice,basicRatio
+          let basicSerivceFee = res.data.data.carInfo.basicSerivceFee || 0;//基础服务费（一天）
+          _this.setData({carInfo,storeAddress,sendPrice,getPrice,rentPrice,basicRatio,basicSerivceFee
             // ,workDay,vaDay
           })
           _this.calcOnRentPrice();
@@ -242,7 +243,10 @@ Page({
     let rentPrice = this.data.rentPrice;//(2020.12.25备注：不用前端计算了，直接用接口返回的rentalPrice字段)
 
     let basicRatio = this.data.basicRatio;
-    let basicPrice = (Number(rentPrice) * Number(basicRatio)).toFixed(2);
+    // let basicPrice = (Number(rentPrice) * Number(basicRatio)).toFixed(2);
+    let basicSerivceFee = this.data.basicSerivceFee;
+    let differenceDay = this.data.differenceDay;
+    let basicPrice = (Number(basicSerivceFee) * Number(differenceDay));
 
     this.setData({rentPrice,basicPrice})
   },

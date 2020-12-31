@@ -85,7 +85,7 @@
         {{orderInfo.rentPrice}}元
       </view>
     </view>
-    <view>
+    <view wx:if="{{orderInfo.onHomePrice}}">
       <view>上门取送费</view>
       <view>{{orderInfo.onHomePrice}}元</view>
     </view>
@@ -95,11 +95,16 @@
     </view>
     <view>
       <view>基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
-      <view><text>{{orderInfo.rentPrice}}元 X {{orderInfo.jiChu}}</text>{{orderInfo.basicSerivceFee}}元</view>
+      <!-- <view><text>{{orderInfo.rentPrice}}元 X {{orderInfo.jiChu}}</text>{{orderInfo.basicSerivceFee}}元</view> -->
+      <view><text>{{orderInfo.carInfo.basicSerivceFee}}元 X {{orderInfo.differenceDay}}</text>{{orderInfo.basicPrice}}元</view>
     </view>
     <view>
       <view>租车费用总计</view>
-      <view>{{orderInfo.price}}元</view>
+      <view>{{orderInfo.originalPrice}}元</view>
+    </view>
+    <view wx:if="{{orderInfo.discountFee}}">
+      <view>优惠后费用总计</view>
+      <view><text class="red">(优惠金额¥{{orderInfo.discountFee}})</text>{{orderInfo.price}}元</view>
     </view>
   </view>
   <!-- 押金 -->

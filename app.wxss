@@ -129,6 +129,10 @@ page{
   color:#A9A9A9;
   text-decoration: line-through;
 }
+.car_list .car_box .status{
+  font-size: 24rpx;
+  color: #E61E1E;
+}
 
 /* 标题栏 */
 .title_bar{

@@ -110,10 +110,15 @@ Page({
           // orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.differenceDay);//总租金 每天租金*租用天数
           // orderInfo.rentPrice = Number(orderInfo.carInfo.discountPrice) * Number(orderInfo.workDay) + Number(orderInfo.carInfo.holidayPrice) * Number(orderInfo.vaDay);//总租金 工作日租金*工作日租用天数 + 节假日租金*节假日租用天数
           orderInfo.rentPrice = orderInfo.rentalPrice || 0;//车辆租金(2020.12.25备注：不用前端计算了，直接用接口返回的rentalPrice字段)
-          orderInfo.onHomePrice = Number(orderInfo.sendPrice) + Number(orderInfo.getPrice);//上门取送费 sendPrice/getPrice/sendPrice+getPrice
+          let sendPrice = orderInfo.sendAddress ? orderInfo.sendPrice : 0;
+          let getPrice = orderInfo.getAddress ? orderInfo.getPrice : 0;
+          orderInfo.onHomePrice = Number(sendPrice) + Number(getPrice);//上门取送费 sendPrice/getPrice/sendPrice+getPrice
           // 不用前端计算，接口有返回字段：基础服务费basicSerivceFee、租车费用总计price↓
           //orderInfo.basicPrice = (Number(orderInfo.rentPrice) * Number(orderInfo.jiChu)).toFixed(2);//基础服务费 车辆租金*基础服务费率
           //orderInfo.totalPrice = (Number(orderInfo.rentPrice) + Number(orderInfo.onHomePrice)+ Number(orderInfo.youxiangFee) + Number(orderInfo.basicPrice)).toFixed(2);//租车费用总计，不含押金
+          let discountFee = orderInfo.discountFee || 0;
+          orderInfo.originalPrice = (Number(orderInfo.price) + Number(discountFee)).toFixed(2);//租车费用总计 优惠后价格+优惠金额
+          orderInfo.basicPrice = Number(orderInfo.carInfo.basicSerivceFee) * Number(orderInfo.differenceDay);//基础服务费 基础服务费(1天)*天数
 
           let orderStatus = [
             {class: 'after',icon: '../../../image/order/order_status_icon1.png',name:'客服确认'},

@@ -57,6 +57,7 @@
           </view>
           <view class="size">{{item.licenseNo}} | 日均限{{item.limitMile}}km</view>
         </view>
+        <view class="status" wx:if="{{item.lockFlag == 'YES'}}">已出租</view>
         <view class="price">
           <view class="discount"><text>￥{{item.discountPrice}}</text>/天</view>
           <view class="cost">￥{{item.normalPrice}}/天</view>
