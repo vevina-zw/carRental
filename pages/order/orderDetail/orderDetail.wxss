@@ -88,6 +88,10 @@
   font-size: 22rpx;
   margin-right: 30rpx;
 }
+.price_detail >view text.red{
+  font-size: 24rpx;
+  color: #FF4C4C;
+}
 .price_detail >view >view{
   display: flex;
   align-items: center;

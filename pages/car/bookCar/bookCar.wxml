@@ -90,7 +90,8 @@
     </view>
     <view>
       <view catchtap="goToAgreement" data-type="basicServe">基础服务费<image src="../../../image/common/tips_icon.png"></image></view>
-      <view><text>{{rentPrice}}元 X {{basicRatio}}</text>{{basicPrice}}元</view>
+      <!-- <view><text>{{rentPrice}}元 X {{basicRatio}}</text>{{basicPrice}}元</view> -->
+      <view><text>{{basicSerivceFee}}元 X {{differenceDay}}</text>{{basicPrice}}元</view>
     </view>
     <view>
       <view>租车费用总计</view>

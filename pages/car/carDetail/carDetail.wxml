@@ -33,6 +33,7 @@
       <!-- {{carInfo.brand}} {{carInfo.brandSub}} {{carInfo.displacement}}T  -->
       {{carInfo.title}}
       <image wx:if="{{carInfo.ownerFlag == 'YES'}}" src="../../../image/common/label_icon3.png"></image>
+      <text class="status" wx:if="{{carInfo.lockFlag == 'YES'}}">已出租</text>
     </view>
     <view class="size">
       <view>
